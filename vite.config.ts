@@ -5,6 +5,7 @@
   import path from 'path';
 
   export default defineConfig({
+    base: '/CNB2026/',
     plugins: [react(), tailwindcss()],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
