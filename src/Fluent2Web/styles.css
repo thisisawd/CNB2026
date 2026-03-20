@@ -1,0 +1,468 @@
+:root {
+  --web\/typography\/line-height\/600: 32;
+  /* About colors\/alpha\/black\/0: #00000000 */
+  --colors\/alpha\/black\/0: #0000;
+  /* About colors\/high-contrast\/aquatic\/disabled: #A6A6A6 */
+  --colors\/high-contrast\/aquatic\/disabled: #A6A6A6;
+  --size\/200: 20;
+  /* About colors\/shared\/yellow\/primary: #FDE300 */
+  --colors\/shared\/yellow\/primary: #FDE300;
+  /* About colors\/brand\/m365\/150: #CCD6FF */
+  --colors\/brand\/m365\/150: #CCD6FF;
+  --web\/typography\/font-size\/400: 16;
+  --corner-radius\/160: 16;
+  --typography\/title-2\/offset: 4;
+  --ios\/typography\/font-size\/900: 60;
+  --corner-radius\/20: 2;
+  /* About colors\/shared\/light-blue\/tint-40: #BFDDF5 */
+  --colors\/shared\/light-blue\/tint-40: #BFDDF5;
+  --web\/typography\/font-size\/800: 32;
+  --state\/icon-regular: true;
+  --typography\/caption-1\/offset: 2;
+  /* About colors\/shared\/light-blue\/primary: #3A96DD */
+  --colors\/shared\/light-blue\/primary: #3A96DD;
+  --corner-radius\/circular: 9999;
+  --web\/typography\/line-height\/500: 28;
+  --typography\/title-3\/offset: 4;
+  --web\/typography\/font-size\/200: 12;
+  --size\/520: 52;
+  /* About colors\/neutral\/grey\/black: #000000 */
+  --colors\/neutral\/grey\/black: #000;
+  --ios\/typography\/line-height\/700: 34;
+  --size\/120: 12;
+  /* About colors\/neutral\/grey\/84: #D6D6D6 */
+  --colors\/neutral\/grey\/84: #D6D6D6;
+  --web\/typography\/font-size\/300: 14;
+  /* About colors\/brand\/bic\/service-copilot\/80: #3B5DD1 */
+  --colors\/brand\/bic\/service-copilot\/80: #3B5DD1;
+  /* About colors\/shared\/light-green\/tint-50: #CEF0CD */
+  --colors\/shared\/light-green\/tint-50: #CEF0CD;
+  --typography\/large-title\/offset: 6;
+  --corner-radius\/60: 6;
+  --web\/typography\/line-height\/200: 16;
+  /* About colors\/brand\/bic\/power-platform-admin-center\/80: #017860 */
+  --colors\/brand\/bic\/power-platform-admin-center\/80: #017860;
+  /* About colors\/alpha\/black\/40: #00000066 */
+  --colors\/alpha\/black\/40: #0006;
+  --web\/typography\/line-height\/400: 22;
+  --typography\/body-1-strong\/offset: 2;
+  --stroke-width\/20: 2;
+  /* About colors\/brand\/powerpoint\/80: #C43E1C */
+  --colors\/brand\/powerpoint\/80: #C43E1C;
+  --typography\/caption-2\/offset: 0.5;
+  --web\/typography\/line-height\/1000: 92;
+  --corner-radius\/none: 0;
+  /* About colors\/alpha\/black\/50: #00000080 */
+  --colors\/alpha\/black\/50: #00000080;
+  /* About colors\/neutral\/grey\/92: #EBEBEB */
+  --colors\/neutral\/grey\/92: #EBEBEB;
+  /* About colors\/shared\/blue\/primary: #0078D4 */
+  --colors\/shared\/blue\/primary: #0078D4;
+  --stroke-width\/60: 6;
+  --web\/typography\/font-size\/700: 28;
+  --corner-radius\/80: 8;
+  --web\/typography\/line-height\/850-\(new\): 48;
+  /* About colors\/neutral\/grey\/36: #5C5C5C */
+  --colors\/neutral\/grey\/36: #5C5C5C;
+  --corner-radius\/40: 4;
+  /* About colors\/neutral\/grey\/12: #1F1F1F */
+  --colors\/neutral\/grey\/12: #1F1F1F;
+  --web\/typography\/font-size\/500: 20;
+  --android\/typography\/line-height\/900: 72;
+  --web\/typography\/line-height\/450-\(new\): 24;
+  /* About colors\/neutral\/grey\/72: #B8B8B8 */
+  --colors\/neutral\/grey\/72: #B8B8B8;
+  /* About colors\/neutral\/grey\/48: #7A7A7A */
+  --colors\/neutral\/grey\/48: #7A7A7A;
+  /* About colors\/neutral\/grey\/82: #D1D1D1 */
+  --colors\/neutral\/grey\/82: #D1D1D1;
+  /* About colors\/alpha\/white\/0: #FFFFFF00 */
+  --colors\/alpha\/white\/0: #FFF0;
+  /* About colors\/neutral\/grey\/90: #E6E6E6 */
+  --colors\/neutral\/grey\/90: #E6E6E6;
+  /* About colors\/brand\/word\/80: #185ABD */
+  --colors\/brand\/word\/80: #185ABD;
+  --size\/560: 56;
+  /* About colors\/shared\/lavender\/shade-10: #6656D1 */
+  --colors\/shared\/lavender\/shade-10: #6656D1;
+  --size\/240: 24;
+  /* About colors\/brand\/teams\/80: #5B5FC7 */
+  --colors\/brand\/teams\/80: #5B5FC7;
+  /* About colors\/neutral\/grey\/4: #0A0A0A */
+  --colors\/neutral\/grey\/4: #0A0A0A;
+  /* About colors\/brand\/bic\/power-automate\/80: #005EEB */
+  --colors\/brand\/bic\/power-automate\/80: #005EEB;
+  --typography\/body-2\/offset: 3;
+  --size\/480: 48;
+  /* About colors\/neutral\/grey\/60: #999999 */
+  --colors\/neutral\/grey\/60: #999;
+  --typography\/body-1-stronger\/offset: 2;
+  --corner-radius\/120: 12;
+  /* About colors\/shared\/light-green\/primary: #13A10E */
+  --colors\/shared\/light-green\/primary: #13A10E;
+  /* About colors\/shared\/light-blue\/shade-20: #2C72A8 */
+  --colors\/shared\/light-blue\/shade-20: #2C72A8;
+  --size\/80: 8;
+  --typography\/title-1\/offset: 4;
+  /* About colors\/shared\/light-blue\/tint-50: #DCEDFA */
+  --colors\/shared\/light-blue\/tint-50: #DCEDFA;
+  --typography\/caption-1-stronger\/offset: 1;
+  --web\/typography\/line-height\/100: 14;
+  /* About colors\/brand\/word\/160: #D2E0F4 */
+  --colors\/brand\/word\/160: #D2E0F4;
+  /* About colors\/brand\/viva\/70: #335CCC */
+  --colors\/brand\/viva\/70: #335CCC;
+  --stroke-width\/10: 1;
+  --ios\/typography\/font-size\/800: 34;
+  --size\/40: 4;
+  --ios\/typography\/line-height\/300: 20;
+  /* About colors\/brand\/viva\/80: #3E69DE */
+  --colors\/brand\/viva\/80: #3E69DE;
+  --corner-radius\/400: 40;
+  /* About colors\/brand\/excel\/80: #107C41 */
+  --colors\/brand\/excel\/80: #107C41;
+  /* About colors\/brand\/comm-blue\/80: #0F6CBD */
+  --colors\/brand\/comm-blue\/80: #0F6CBD;
+  --size\/60: 6;
+  --size\/160: 16;
+  /* About colors\/neutral\/grey\/80: #CCCCCC */
+  --colors\/neutral\/grey\/80: #CCC;
+  /* About colors\/alpha\/white\/90: #FFFFFFE6 */
+  --colors\/alpha\/white\/90: #FFFFFFE5;
+  /* About colors\/shared\/pink\/primary: #E43BA6 */
+  --colors\/shared\/pink\/primary: #E43BA6;
+  /* About colors\/alpha\/black\/70: #000000B3 */
+  --colors\/alpha\/black\/70: #000000B2;
+  /* About colors\/shared\/marigold\/primary: #EAA300 */
+  --colors\/shared\/marigold\/primary: #EAA300;
+  /* About colors\/neutral\/grey\/white: #FFFFFF */
+  --colors\/neutral\/grey\/white: #FFF;
+  /* About colors\/alpha\/black\/5: #0000000D */
+  --colors\/alpha\/black\/5: #0000000D;
+  --ios\/typography\/line-height\/200: 18;
+  --stroke-width\/none: 0;
+  --web\/typography\/font-size\/600: 24;
+  --web\/typography\/font-size\/100: 10;
+  --size\/280: 28;
+  --typography\/subtitle-2\/offset: 2;
+  /* About colors\/brand\/m365\/80-\(primary\): #464FEB */
+  --colors\/brand\/m365\/80-\(primary\): #464FEB;
+  --web\/typography\/line-height\/900: 56;
+  /* About colors\/neutral\/grey\/24: #3D3D3D */
+  --colors\/neutral\/grey\/24: #3D3D3D;
+  --web\/typography\/line-height\/700: 36;
+  --size\/20: 2;
+  /* About colors\/neutral\/grey\/94: #F0F0F0 */
+  --colors\/neutral\/grey\/94: #F0F0F0;
+  --corner-radius\/240: 24;
+  /* About colors\/neutral\/grey\/98: #FAFAFA */
+  --colors\/neutral\/grey\/98: #FAFAFA;
+  --ios\/typography\/line-height\/100: 16;
+  /* About colors\/shared\/cranberry\/primary: #C50F1F */
+  --colors\/shared\/cranberry\/primary: #C50F1F;
+  /* About colors\/brand\/bic\/dynamics\/80: #1C60DF */
+  --colors\/brand\/bic\/dynamics\/80: #1C60DF;
+  --stroke-width\/05: 0.5;
+  --web\/typography\/line-height\/300: 20;
+  --typography\/caption-1-strong\/offset: 1;
+  /* About colors\/neutral\/grey\/88: #E0E0E0 */
+  --colors\/neutral\/grey\/88: #E0E0E0;
+  --typography\/body-1\/offset: 2;
+  --corner-radius\/input\/withinsmall: 3;
+  --typography\/body-2-strong-\(new\)\/offset: 3;
+  /* About colors\/shared\/blue\/tint-50: #D0E7F8 */
+  --colors\/shared\/blue\/tint-50: #D0E7F8;
+  --stroke-width\/15: 1.5;
+  --typography\/caption-2-strong\/offset: 0.5;
+  --typography\/display\/offset: 8;
+  --typography\/subtitle-1-stronger-\(new\)\/offset: 2;
+  --state\/icon-fill: false;
+  --corner-radius\/320: 32;
+  /* About colors\/brand\/m365\/110-\(dark-primary\): #7385FF */
+  --colors\/brand\/m365\/110-\(dark-primary\): #7385FF;
+  --android\/typography\/line-height\/800: 44;
+  --corner-radius\/input\/withinmedium: 3;
+  /* About colors\/brand\/word\/70: #2461CA */
+  --colors\/brand\/word\/70: #2461CA;
+  --stroke-width\/30: 3;
+  /* About colors\/neutral\/grey\/26: #424242 */
+  --colors\/neutral\/grey\/26: #424242;
+  /* About colors\/shared\/light-green\/tint-60: #F2FBF2 */
+  --colors\/shared\/light-green\/tint-60: #F2FBF2;
+  /* About colors\/alpha\/black\/90: #000000E6 */
+  --colors\/alpha\/black\/90: #000000E5;
+  /* About colors\/neutral\/grey\/96: #F5F5F5 */
+  --colors\/neutral\/grey\/96: #F5F5F5;
+  --selected-checkbox-radio: false;
+  /* About colors\/neutral\/grey\/38: #616161 */
+  --colors\/neutral\/grey\/38: #616161;
+  /* About colors\/brand\/teams\/160: #E8EBFA */
+  --colors\/brand\/teams\/160: #E8EBFA;
+  --web\/typography\/font-size\/450-\(new\): 18;
+  /* About colors\/neutral\/grey\/40: #666666 */
+  --colors\/neutral\/grey\/40: #666;
+  --android\/typography\/line-height\/300: 20;
+  --web\/typography\/line-height\/800: 40;
+  --size\/none: 0;
+  --web\/typography\/font-size\/1000: 68;
+  --size\/100: 10;
+  /* About colors\/shared\/light-blue\/tint-60: #F6FAFE */
+  --colors\/shared\/light-blue\/tint-60: #F6FAFE;
+  /* About colors\/alpha\/black\/20: #00000033 */
+  --colors\/alpha\/black\/20: #0003;
+  /* About colors\/shared\/red\/primary: #D13438 */
+  --colors\/shared\/red\/primary: #D13438;
+  --size\/400: 40;
+  --quick-actions: false;
+  --typography\/subtitle-1\/offset: 2;
+  --size\/320: 32;
+  --size\/360: 36;
+  --web\/typography\/font-size\/900: 40;
+  --stroke-width\/40: 4;
+  /* About colors\/brand\/excel\/160: #CAEAD8 */
+  --colors\/brand\/excel\/160: #CAEAD8;
+  /* About colors\/neutral\/grey\/14: #242424 */
+  --colors\/neutral\/grey\/14: #242424;
+  /* About colors\/brand\/m365\/160: #EBEFFF */
+  --colors\/brand\/m365\/160: #EBEFFF;
+  --ios\/typography\/font-size\/600: 22;
+  /* About colors\/alpha\/black\/10: #0000001A */
+  --colors\/alpha\/black\/10: #0000001A;
+  --unselected-checkbox-radio: true;
+  --typography\/subtitle-2-stronger\/offset: 2;
+  --android\/typography\/line-height\/700: 32;
+}
+
+/* About web-inline-link-styles-body-3-strong-link-extension: LInk */
+.web-inline-link-styles-body-3-strong-link-extension {
+  font-family: "Segoe UI";
+  font-style: "Semibold";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0px;
+}
+
+/* About web-subtitle-2: Subject title */
+.web-subtitle-2 {
+  font-family: "Segoe UI";
+  font-style: "Semibold";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0px;
+}
+
+/* About web-inline-link-styles-body-3-link-extension: Link */
+.web-inline-link-styles-body-3-link-extension {
+  font-family: "Segoe UI";
+  font-style: "Regular";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0px;
+}
+
+.web-body-2-strong-extension {
+  font-family: "Segoe UI";
+  font-style: "Semibold";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0px;
+}
+
+/* About web-body-2: Large size input, text area, and dropdown */
+.web-body-2 {
+  font-family: "Segoe UI";
+  font-style: "Regular";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0px;
+}
+
+/* About web-body-1: Body */
+.web-body-1 {
+  font-family: "Segoe UI";
+  font-style: "Regular";
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+}
+
+.web-body-1-stronger {
+  font-family: "Segoe UI";
+  font-style: "Bold";
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0px;
+}
+
+.web-body-3-extension {
+  font-family: "Segoe UI";
+  font-style: "Regular";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0px;
+}
+
+/* About web-inline-link-styles-body-2-strong-link-extension: Link */
+.web-inline-link-styles-body-2-strong-link-extension {
+  font-family: "Segoe UI";
+  font-style: "Semibold";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0px;
+}
+
+/* About web-caption-1: Caption */
+.web-caption-1 {
+  font-family: "Segoe UI";
+  font-style: "Regular";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0px;
+}
+
+/* About web-large-title: Hero title */
+.web-large-title {
+  font-family: "Segoe UI";
+  font-style: "Semibold";
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 56px;
+  letter-spacing: 0px;
+}
+
+.web-body-3-strong-extension {
+  font-family: "Segoe UI";
+  font-style: "Semibold";
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0px;
+}
+
+/* About web-title-1: Greeting title */
+.web-title-1 {
+  font-family: "Segoe UI";
+  font-style: "Semibold";
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+  letter-spacing: 0px;
+}
+
+/* About web-subtitle-1: Page header / Pane header */
+.web-subtitle-1 {
+  font-family: "Segoe UI";
+  font-style: "Semibold";
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0px;
+}
+
+.web-caption-1-stronger {
+  font-family: "Segoe UI";
+  font-style: "Bold";
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0px;
+}
+
+/* About web-caption-1-strong: Caption (unread) */
+.web-caption-1-strong {
+  font-family: "Segoe UI";
+  font-style: "Semibold";
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0px;
+}
+
+/* About web-display: XL Numerics (Limited) */
+.web-display {
+  font-family: "Segoe UI";
+  font-style: "Semibold";
+  font-size: 68px;
+  font-weight: 600;
+  line-height: 92px;
+  letter-spacing: 0px;
+}
+
+/* About web-title-3: Email header */
+.web-title-3 {
+  font-family: "Segoe UI";
+  font-style: "Semibold";
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: 0px;
+}
+
+/* About web-title-2: Page title */
+.web-title-2 {
+  font-family: "Segoe UI";
+  font-style: "Semibold";
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0px;
+}
+
+.web-subtitle-1-stronger-extension {
+  font-family: "Segoe UI";
+  font-style: "Bold";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0px;
+}
+
+/* About web-caption-2-strong: Metadata (limited) */
+.web-caption-2-strong {
+  font-family: "Segoe UI";
+  font-style: "Semibold";
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: 0px;
+}
+
+/* About web-body-1-strong: Body (unread), button */
+.web-body-1-strong {
+  font-family: "Segoe UI";
+  font-style: "Semibold";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0px;
+}
+
+.web-subtitle-2-stronger {
+  font-family: "Segoe UI";
+  font-style: "Bold";
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0px;
+}
+
+/* About web-caption-2: Metadata (limited) */
+.web-caption-2 {
+  font-family: "Segoe UI";
+  font-style: "Regular";
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0px;
+}
+
