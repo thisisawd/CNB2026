@@ -3,7 +3,7 @@ import { Button } from './ui/button';
 import { F2CTAButton } from './fluent2/FluentAdapters';
 import { useFluent2 } from './Fluent2Context';
 import TopNavigationBarVp from '../imports/TopNavigationBarVp5';
-import heroImage from 'figma:asset/19dd103e0dc6ab6523b235cd958c58501438dce1.png';
+import heroImage from '../assets/hero-marketing.png';
 import organizeImage from 'figma:asset/02b21b8e0794779246a59dcde3bc3f352c804083.png';
 import surfaceImage from 'figma:asset/b26480fb54ec4d91eb5779a7e716450e394fef53.png';
 import collaborateImage from 'figma:asset/fde8eaff45f9f47c66f1270f89546a030a8f529c.png';
