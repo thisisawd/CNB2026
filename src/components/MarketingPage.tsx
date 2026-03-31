@@ -9,6 +9,7 @@ import hero01 from '../assets/Hero_01.png';
 import hero02 from '../assets/Hero_02.png';
 import hero03 from '../assets/Hero_03.png';
 import hero04 from '../assets/Hero_04.png';
+import blade1Image from '../assets/Blade_1.png';
 import organizeImage from 'figma:asset/02b21b8e0794779246a59dcde3bc3f352c804083.png';
 import surfaceImage from 'figma:asset/b26480fb54ec4d91eb5779a7e716450e394fef53.png';
 import collaborateImage from 'figma:asset/fde8eaff45f9f47c66f1270f89546a030a8f529c.png';
@@ -28,6 +29,8 @@ interface MarketingPageProps {
   onFluentComparison?: () => void;
   selectedHero?: string;
   onSelectedHeroChange?: (hero: string) => void;
+  selectedBlade?: string;
+  onSelectedBladeChange?: (blade: string) => void;
 }
 
 // Custom hook for fade-in animations
@@ -65,7 +68,7 @@ const CLASS_ACCENT_HOVER = '#6b15a0';
 const STAFF_ACCENT = '#008272';
 const STAFF_ACCENT_HOVER = '#006b5e';
 
-export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookTypeChange, featureFlags = {}, onFeatureFlagChange, onFluentComparison, selectedHero = 'hero1', onSelectedHeroChange }: MarketingPageProps) {
+export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookTypeChange, featureFlags = {}, onFeatureFlagChange, onFluentComparison, selectedHero = 'hero1', onSelectedHeroChange, selectedBlade = 'none', onSelectedBladeChange }: MarketingPageProps) {
   const { enabled: fluent2Enabled } = useFluent2();
   const isStaff = notebookType === 'staff';
   const accent = CLASS_ACCENT;
@@ -81,6 +84,14 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
     hero05: { src: hero04, label: 'Hero 5' },
   };
   const currentHeroImage = heroImages[selectedHero]?.src || heroImage;
+
+  const bladeOptions: { key: string; label: string }[] = [
+    { key: 'none', label: 'No blade treatment' },
+    { key: 'blade1', label: 'Blade 1' },
+  ];
+  const bladeImages: Record<string, string> = {
+    blade1: blade1Image,
+  };
   
   const tabs = useMemo(() => isStaff
     ? [
@@ -571,7 +582,11 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
       </section>
 
       {/* Organize Your Course Content Section */}
-      <section className="bg-[#f2f2f2] dark:bg-[#292929] py-20" ref={organizeSection}>
+      <section
+        className={`py-20 ${selectedBlade !== 'none' && bladeImages[selectedBlade] ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
+        ref={organizeSection}
+        style={selectedBlade !== 'none' && bladeImages[selectedBlade] ? { backgroundImage: `url(${bladeImages[selectedBlade]})` } : undefined}
+      >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div 
@@ -851,6 +866,9 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
           themes={Object.entries(heroImages).map(([key, { label }]) => ({ key, label }))}
           selectedTheme={selectedHero}
           onThemeChange={onSelectedHeroChange}
+          blades={bladeOptions}
+          selectedBlade={selectedBlade}
+          onBladeChange={onSelectedBladeChange}
         />
       </div>
 

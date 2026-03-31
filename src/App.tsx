@@ -71,6 +71,7 @@ export default function App() {
     removedStudents: [] as Array<{ name: string; email: string; photo?: string }>,
   });
   const [selectedHero, setSelectedHero] = useState('hero1');
+  const [selectedBlade, setSelectedBlade] = useState('none');
   const [featureFlags, setFeatureFlags] = useState<Record<string, boolean>>({
     teacher_student_icon_alt1: true,
     fluent2_components: false,
@@ -251,6 +252,8 @@ export default function App() {
             onFluentComparison={() => setShowFluentComparison(true)}
             selectedHero={selectedHero}
             onSelectedHeroChange={setSelectedHero}
+            selectedBlade={selectedBlade}
+            onSelectedBladeChange={setSelectedBlade}
           />
           <SignInDialog
             isOpen={showSignInDialog}

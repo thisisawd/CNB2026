@@ -47,9 +47,12 @@ interface TopNavigationBarVpProps {
   themes?: { key: string; label: string }[];
   selectedTheme?: string;
   onThemeChange?: (theme: string) => void;
+  blades?: { key: string; label: string }[];
+  selectedBlade?: string;
+  onBladeChange?: (blade: string) => void;
 }
 
-export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', onNotebookTypeChange, themes = [], selectedTheme, onThemeChange }: TopNavigationBarVpProps) {
+export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', onNotebookTypeChange, themes = [], selectedTheme, onThemeChange, blades = [], selectedBlade, onBladeChange }: TopNavigationBarVpProps) {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -117,12 +120,12 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
               {isThemeOpen && (
                 <>
                   <div className="fixed inset-0 z-40" onClick={() => setIsThemeOpen(false)} />
-                  <div className="absolute right-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md z-50 min-w-[180px]">
+                  <div className="absolute right-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md z-50 min-w-[210px]">
                     {themes.map((theme) => (
                       <button
                         key={theme.key}
                         onClick={() => { onThemeChange?.(theme.key); setIsThemeOpen(false); }}
-                        className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${selectedTheme === theme.key ? 'bg-gray-100' : ''}`}
+                        className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 ${selectedTheme === theme.key ? 'bg-gray-100' : ''}`}
                       >
                         <span className="font-['Segoe_UI',sans-serif] text-[14px] text-black">{theme.label}</span>
                         {selectedTheme === theme.key && (
@@ -130,15 +133,32 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
                         )}
                       </button>
                     ))}
+                    {blades.length > 0 && (
+                      <>
+                        <div className="border-t-2 border-gray-300 my-1" />
+                        {blades.map((blade) => (
+                          <button
+                            key={blade.key}
+                            onClick={() => { onBladeChange?.(blade.key); setIsThemeOpen(false); }}
+                            className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${selectedBlade === blade.key ? 'bg-gray-100' : ''}`}
+                          >
+                            <span className="font-['Segoe_UI',sans-serif] text-[14px] text-black">{blade.label}</span>
+                            {selectedBlade === blade.key && (
+                              <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
+                            )}
+                          </button>
+                        ))}
+                      </>
+                    )}
                   </div>
                 </>
               )}
             </div>
           )}
           <div className="relative">
-          <button 
+          <button
             onClick={() => setIsProfileOpen(!isProfileOpen)}
-            className="hover:bg-gray-100 p-2 rounded" 
+            className="hover:bg-gray-100 p-2 rounded"
             aria-label="Notebook type"
           >
             {notebookType === 'class' ? (
@@ -275,12 +295,12 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
             {isThemeOpen && (
               <>
                 <div className="fixed inset-0 z-40" onClick={() => setIsThemeOpen(false)} />
-                <div className="absolute right-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md z-50 min-w-[180px]">
+                <div className="absolute right-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md z-50 min-w-[210px]">
                   {themes.map((theme) => (
                     <button
                       key={theme.key}
                       onClick={() => { onThemeChange?.(theme.key); setIsThemeOpen(false); }}
-                      className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${selectedTheme === theme.key ? 'bg-gray-100' : ''}`}
+                      className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 ${selectedTheme === theme.key ? 'bg-gray-100' : ''}`}
                     >
                       <span className="font-['Segoe_UI',sans-serif] text-[14px] text-black">{theme.label}</span>
                       {selectedTheme === theme.key && (
@@ -288,13 +308,30 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
                       )}
                     </button>
                   ))}
+                  {blades.length > 0 && (
+                    <>
+                      <div className="border-t-2 border-gray-300 my-1" />
+                      {blades.map((blade) => (
+                        <button
+                          key={blade.key}
+                          onClick={() => { onBladeChange?.(blade.key); setIsThemeOpen(false); }}
+                          className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${selectedBlade === blade.key ? 'bg-gray-100' : ''}`}
+                        >
+                          <span className="font-['Segoe_UI',sans-serif] text-[14px] text-black">{blade.label}</span>
+                          {selectedBlade === blade.key && (
+                            <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
+                          )}
+                        </button>
+                      ))}
+                    </>
+                  )}
                 </div>
               </>
             )}
           </div>
         )}
         <div className="relative">
-          <button 
+          <button
             onClick={() => setIsProfileOpen(!isProfileOpen)}
             className="hover:bg-gray-100 p-2 rounded" 
             aria-label="Notebook type"
