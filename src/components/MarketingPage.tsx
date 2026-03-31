@@ -5,6 +5,10 @@ import { useFluent2 } from './Fluent2Context';
 import TopNavigationBarVp from '../imports/TopNavigationBarVp5';
 import heroImage from '../assets/hero-marketing.png';
 import heroAnimated from '../assets/Hero_Animated.gif';
+import hero01 from '../assets/Hero_01.png';
+import hero02 from '../assets/Hero_02.png';
+import hero03 from '../assets/Hero_03.png';
+import hero04 from '../assets/Hero_04.png';
 import organizeImage from 'figma:asset/02b21b8e0794779246a59dcde3bc3f352c804083.png';
 import surfaceImage from 'figma:asset/b26480fb54ec4d91eb5779a7e716450e394fef53.png';
 import collaborateImage from 'figma:asset/fde8eaff45f9f47c66f1270f89546a030a8f529c.png';
@@ -71,6 +75,10 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
   const heroImages: Record<string, { src: string; label: string }> = {
     hero1: { src: heroImage, label: 'Hero 1' },
     animatedHero1: { src: heroAnimated, label: 'Animated Hero 1' },
+    hero02: { src: hero01, label: 'Hero 2' },
+    hero03: { src: hero02, label: 'Hero 3' },
+    hero04: { src: hero03, label: 'Hero 4' },
+    hero05: { src: hero04, label: 'Hero 5' },
   };
   const currentHeroImage = heroImages[selectedHero]?.src || heroImage;
   
