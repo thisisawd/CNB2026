@@ -68,7 +68,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
   const nbFullName = isStaff ? 'OneNote Staff Notebook' : 'OneNote Class Notebook';
 
   const heroImages: Record<string, { src: string; label: string }> = {
-    hero1: { src: heroImage, label: 'Hero 1' },
+    hero1: { src: heroImage, label: 'Theme 1' },
   };
   const currentHeroImage = heroImages[selectedHero]?.src || heroImage;
   
@@ -838,41 +838,11 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
           onSignIn={onSignIn}
           notebookType={notebookType}
           onNotebookTypeChange={onNotebookTypeChange}
+          themes={Object.entries(heroImages).map(([key, { label }]) => ({ key, label }))}
+          selectedTheme={selectedHero}
+          onThemeChange={onSelectedHeroChange}
         />
       </div>
-
-      {/* Hero Image Selector (Class Notebook only) */}
-      {!isStaff && (
-        <div className="bg-[#f9f9f9] dark:bg-[#2b2b2b] border-b border-[#e0e0e0] dark:border-gray-700">
-          <div className="max-w-7xl mx-auto px-6 py-3">
-            <div className="flex items-center gap-4">
-              {Object.entries(heroImages).map(([key, { src, label }]) => (
-                <button
-                  key={key}
-                  onClick={() => onSelectedHeroChange?.(key)}
-                  className={`flex items-center gap-3 rounded-lg border-2 transition-all duration-200 px-2 py-1.5 ${
-                    selectedHero === key
-                      ? 'border-[#7719AA] bg-white dark:bg-[#3a3a3a]'
-                      : 'border-transparent hover:border-[#d1d1d1] bg-white dark:bg-[#3a3a3a]'
-                  }`}
-                >
-                  <img
-                    src={src}
-                    alt={label}
-                    className="w-24 h-14 object-cover rounded"
-                  />
-                  <div className="flex items-center gap-2">
-                    <span className="font-['Segoe_UI',sans-serif] text-[13px] text-[#323130] dark:text-white whitespace-nowrap">{label}</span>
-                    {selectedHero === key && (
-                      <Check className="w-5 h-5 text-[#7719AA]" strokeWidth={3} />
-                    )}
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
 
       {isStaff ? renderStaffContent() : renderClassContent()}
 

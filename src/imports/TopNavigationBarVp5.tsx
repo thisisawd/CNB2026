@@ -1,5 +1,5 @@
 import svgPaths from "./svg-pc5x2o8hcp";
-import { Search as SearchIcon, Menu, X, ChevronDown } from 'lucide-react';
+import { Search as SearchIcon, Menu, X, ChevronDown, Paintbrush, Check } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import classNotebookIcon from 'figma:asset/2f173971636b421ff0273180a4600c3546b454b0.png';
 import staffNotebookIcon from 'figma:asset/3a975afe9c0dd16c1341fb550f63e4838acc47a0.png';
@@ -44,13 +44,17 @@ interface TopNavigationBarVpProps {
   onSignIn?: () => void;
   notebookType?: 'class' | 'staff';
   onNotebookTypeChange?: (type: 'class' | 'staff') => void;
+  themes?: { key: string; label: string }[];
+  selectedTheme?: string;
+  onThemeChange?: (theme: string) => void;
 }
 
-export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', onNotebookTypeChange }: TopNavigationBarVpProps) {
+export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', onNotebookTypeChange, themes = [], selectedTheme, onThemeChange }: TopNavigationBarVpProps) {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileM365Open, setIsMobileM365Open] = useState(false);
+  const [isThemeOpen, setIsThemeOpen] = useState(false);
 
   // Close mobile menu on resize to desktop
   useEffect(() => {
@@ -99,8 +103,39 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
         {/* Center: Microsoft Logo */}
         <MicrosoftLogo />
 
-        {/* Right: Profile/Notebook type */}
-        <div className="relative">
+        {/* Right: Theme selector + Profile/Notebook type */}
+        <div className="flex items-center gap-1">
+          {themes.length > 0 && (
+            <div className="relative">
+              <button
+                onClick={() => setIsThemeOpen(!isThemeOpen)}
+                className="hover:bg-gray-100 p-2 rounded"
+                aria-label="Theme selector"
+              >
+                <Paintbrush className="w-5 h-5 text-black" />
+              </button>
+              {isThemeOpen && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setIsThemeOpen(false)} />
+                  <div className="absolute right-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md z-50 min-w-[180px]">
+                    {themes.map((theme) => (
+                      <button
+                        key={theme.key}
+                        onClick={() => { onThemeChange?.(theme.key); setIsThemeOpen(false); }}
+                        className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${selectedTheme === theme.key ? 'bg-gray-100' : ''}`}
+                      >
+                        <span className="font-['Segoe_UI',sans-serif] text-[14px] text-black">{theme.label}</span>
+                        {selectedTheme === theme.key && (
+                          <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+          )}
+          <div className="relative">
           <button 
             onClick={() => setIsProfileOpen(!isProfileOpen)}
             className="hover:bg-gray-100 p-2 rounded" 
@@ -135,6 +170,7 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
               </div>
             </>
           )}
+        </div>
         </div>
       </div>
 
@@ -227,6 +263,36 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
         <button className="hover:bg-gray-100 p-2 rounded" aria-label="Search">
           <SearchIcon className="w-5 h-5 text-black" />
         </button>
+        {themes.length > 0 && (
+          <div className="relative">
+            <button
+              onClick={() => setIsThemeOpen(!isThemeOpen)}
+              className="hover:bg-gray-100 p-2 rounded"
+              aria-label="Theme selector"
+            >
+              <Paintbrush className="w-5 h-5 text-black" />
+            </button>
+            {isThemeOpen && (
+              <>
+                <div className="fixed inset-0 z-40" onClick={() => setIsThemeOpen(false)} />
+                <div className="absolute right-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md z-50 min-w-[180px]">
+                  {themes.map((theme) => (
+                    <button
+                      key={theme.key}
+                      onClick={() => { onThemeChange?.(theme.key); setIsThemeOpen(false); }}
+                      className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${selectedTheme === theme.key ? 'bg-gray-100' : ''}`}
+                    >
+                      <span className="font-['Segoe_UI',sans-serif] text-[14px] text-black">{theme.label}</span>
+                      {selectedTheme === theme.key && (
+                        <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        )}
         <div className="relative">
           <button 
             onClick={() => setIsProfileOpen(!isProfileOpen)}
