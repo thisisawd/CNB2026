@@ -10,6 +10,8 @@ import hero02 from '../assets/Hero_02.png';
 import hero03 from '../assets/Hero_03.png';
 import hero04 from '../assets/Hero_04.png';
 import blade1Image from '../assets/Blade_1.png';
+import blade2Image from '../assets/Blade_2.png';
+import blade3Image from '../assets/Blade_3.png';
 import organizeImage from 'figma:asset/02b21b8e0794779246a59dcde3bc3f352c804083.png';
 import surfaceImage from 'figma:asset/b26480fb54ec4d91eb5779a7e716450e394fef53.png';
 import collaborateImage from 'figma:asset/fde8eaff45f9f47c66f1270f89546a030a8f529c.png';
@@ -88,9 +90,13 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
   const bladeOptions: { key: string; label: string }[] = [
     { key: 'none', label: 'No blade treatment' },
     { key: 'blade1', label: 'Blade 1' },
+    { key: 'blade2', label: 'Blade 2' },
+    { key: 'blade3', label: 'Blade 3' },
   ];
   const bladeImages: Record<string, string> = {
     blade1: blade1Image,
+    blade2: blade2Image,
+    blade3: blade3Image,
   };
   
   const tabs = useMemo(() => isStaff
