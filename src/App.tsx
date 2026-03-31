@@ -70,6 +70,7 @@ export default function App() {
     newStudents: [] as Array<{ name: string; email: string; photo?: string }>,
     removedStudents: [] as Array<{ name: string; email: string; photo?: string }>,
   });
+  const [selectedHero, setSelectedHero] = useState('hero1');
   const [featureFlags, setFeatureFlags] = useState<Record<string, boolean>>({
     teacher_student_icon_alt1: true,
     fluent2_components: false,
@@ -241,13 +242,15 @@ export default function App() {
     return (
       <DarkModeProvider>
         <Fluent2Provider enabled={featureFlags.fluent2_components}>
-          <MarketingPage 
-            onSignIn={handleSignIn} 
+          <MarketingPage
+            onSignIn={handleSignIn}
             notebookType={notebookType}
             onNotebookTypeChange={setNotebookType}
             featureFlags={featureFlags}
             onFeatureFlagChange={handleFeatureFlagChange}
             onFluentComparison={() => setShowFluentComparison(true)}
+            selectedHero={selectedHero}
+            onSelectedHeroChange={setSelectedHero}
           />
           <SignInDialog
             isOpen={showSignInDialog}

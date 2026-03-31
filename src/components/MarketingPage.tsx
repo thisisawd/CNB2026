@@ -1,4 +1,4 @@
-import { BookOpen, Users, FileText, CheckCircle2 } from 'lucide-react';
+import { BookOpen, Users, FileText, CheckCircle2, Check } from 'lucide-react';
 import { Button } from './ui/button';
 import { F2CTAButton } from './fluent2/FluentAdapters';
 import { useFluent2 } from './Fluent2Context';
@@ -21,6 +21,8 @@ interface MarketingPageProps {
   featureFlags?: Record<string, boolean>;
   onFeatureFlagChange?: (flagKey: string, value: boolean) => void;
   onFluentComparison?: () => void;
+  selectedHero?: string;
+  onSelectedHeroChange?: (hero: string) => void;
 }
 
 // Custom hook for fade-in animations
@@ -58,12 +60,17 @@ const CLASS_ACCENT_HOVER = '#6b15a0';
 const STAFF_ACCENT = '#008272';
 const STAFF_ACCENT_HOVER = '#006b5e';
 
-export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookTypeChange, featureFlags = {}, onFeatureFlagChange, onFluentComparison }: MarketingPageProps) {
+export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookTypeChange, featureFlags = {}, onFeatureFlagChange, onFluentComparison, selectedHero = 'hero1', onSelectedHeroChange }: MarketingPageProps) {
   const { enabled: fluent2Enabled } = useFluent2();
   const isStaff = notebookType === 'staff';
   const accent = CLASS_ACCENT;
   const accentHover = CLASS_ACCENT_HOVER;
   const nbFullName = isStaff ? 'OneNote Staff Notebook' : 'OneNote Class Notebook';
+
+  const heroImages: Record<string, { src: string; label: string }> = {
+    hero1: { src: heroImage, label: 'Hero 1' },
+  };
+  const currentHeroImage = heroImages[selectedHero]?.src || heroImage;
   
   const tabs = useMemo(() => isStaff
     ? [
@@ -462,14 +469,14 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
   const renderClassContent = () => (
     <>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-cover bg-center bg-no-repeat w-full" style={{ backgroundImage: `url(${heroImage})` }}>
+      <section className="relative overflow-hidden bg-cover bg-center bg-no-repeat w-full" style={{ backgroundImage: `url(${currentHeroImage})` }}>
         <div className="w-full px-6 py-20 md:py-32">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div 
+              <div
                 className={`transition-all duration-[750ms] ease-out ${
-                  hasScrolled 
-                    ? 'opacity-100 translate-y-0' 
+                  hasScrolled
+                    ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-[200px]'
                 }`}
               >
@@ -827,12 +834,45 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
     <div className="bg-white dark:bg-[#1f1f1f] min-h-screen">
       {/* Top Navigation Bar */}
       <div className="h-[54px] relative z-50">
-        <TopNavigationBarVp 
-          onSignIn={onSignIn} 
+        <TopNavigationBarVp
+          onSignIn={onSignIn}
           notebookType={notebookType}
           onNotebookTypeChange={onNotebookTypeChange}
         />
       </div>
+
+      {/* Hero Image Selector (Class Notebook only) */}
+      {!isStaff && (
+        <div className="bg-[#f9f9f9] dark:bg-[#2b2b2b] border-b border-[#e0e0e0] dark:border-gray-700">
+          <div className="max-w-7xl mx-auto px-6 py-3">
+            <div className="flex items-center gap-4">
+              {Object.entries(heroImages).map(([key, { src, label }]) => (
+                <button
+                  key={key}
+                  onClick={() => onSelectedHeroChange?.(key)}
+                  className={`flex items-center gap-3 rounded-lg border-2 transition-all duration-200 px-2 py-1.5 ${
+                    selectedHero === key
+                      ? 'border-[#7719AA] bg-white dark:bg-[#3a3a3a]'
+                      : 'border-transparent hover:border-[#d1d1d1] bg-white dark:bg-[#3a3a3a]'
+                  }`}
+                >
+                  <img
+                    src={src}
+                    alt={label}
+                    className="w-24 h-14 object-cover rounded"
+                  />
+                  <div className="flex items-center gap-2">
+                    <span className="font-['Segoe_UI',sans-serif] text-[13px] text-[#323130] dark:text-white whitespace-nowrap">{label}</span>
+                    {selectedHero === key && (
+                      <Check className="w-5 h-5 text-[#7719AA]" strokeWidth={3} />
+                    )}
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {isStaff ? renderStaffContent() : renderClassContent()}
 
