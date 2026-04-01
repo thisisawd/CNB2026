@@ -4,7 +4,7 @@ import { F2CTAButton } from './fluent2/FluentAdapters';
 import { useFluent2 } from './Fluent2Context';
 import TopNavigationBarVp from '../imports/TopNavigationBarVp5';
 import heroImage from '../assets/hero-marketing.png';
-import heroAnimated from '../assets/Hero_Animated.gif';
+import heroAnimatedVideo from '../assets/OneNote_Anim_01.mp4';
 import hero01 from '../assets/Hero_01.png';
 import hero02 from '../assets/Hero_02.png';
 import hero03 from '../assets/Hero_03.png';
@@ -77,15 +77,16 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
   const accentHover = CLASS_ACCENT_HOVER;
   const nbFullName = isStaff ? 'OneNote Staff Notebook' : 'OneNote Class Notebook';
 
-  const heroImages: Record<string, { src: string; label: string }> = {
+  const heroImages: Record<string, { src: string; label: string; isVideo?: boolean }> = {
     hero1: { src: heroImage, label: 'Hero 1' },
-    animatedHero1: { src: heroAnimated, label: 'Animated Hero 1' },
+    animatedHero1: { src: heroAnimatedVideo, label: 'Animated Hero 1', isVideo: true },
     hero02: { src: hero01, label: 'Hero 2' },
     hero03: { src: hero02, label: 'Hero 3' },
     hero04: { src: hero03, label: 'Hero 4' },
     hero05: { src: hero04, label: 'Hero 5' },
   };
   const currentHeroImage = heroImages[selectedHero]?.src || heroImage;
+  const isHeroVideo = heroImages[selectedHero]?.isVideo ?? false;
 
   const bladeOptions: { key: string; label: string }[] = [
     { key: 'none', label: 'No blade treatment' },
@@ -496,8 +497,13 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
   const renderClassContent = () => (
     <>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-cover bg-center bg-no-repeat w-full" style={{ backgroundImage: `url(${currentHeroImage})` }}>
-        <div className="w-full px-6 py-20 md:py-32">
+      <section className="relative overflow-hidden bg-cover bg-center bg-no-repeat w-full" style={isHeroVideo ? undefined : { backgroundImage: `url(${currentHeroImage})` }}>
+        {isHeroVideo && (
+          <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0">
+            <source src={currentHeroImage} type="video/mp4" />
+          </video>
+        )}
+        <div className="relative z-10 w-full px-6 py-20 md:py-32">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div

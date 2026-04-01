@@ -21,3 +21,18 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# .NET / Calculator / Minesweeper
+Calculator/
+Calculator.Tests/
+*.sln
+bin/
+obj/
+
+# WinUI3 skills (not part of web project)
+.github/skills/
+.github/instructions/
+
+# Temp build logs
+build_error.txt
+build_log.txt
