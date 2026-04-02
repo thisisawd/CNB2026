@@ -70,8 +70,8 @@ export default function App() {
     newStudents: [] as Array<{ name: string; email: string; photo?: string }>,
     removedStudents: [] as Array<{ name: string; email: string; photo?: string }>,
   });
-  const [selectedHero, setSelectedHero] = useState('hero1');
-  const [selectedBlade, setSelectedBlade] = useState('none');
+  const [selectedHero, setSelectedHero] = useState('animatedHero1');
+  const [selectedBlade, setSelectedBlade] = useState('blade2');
   const [featureFlags, setFeatureFlags] = useState<Record<string, boolean>>({
     teacher_student_icon_alt1: true,
     fluent2_components: false,
