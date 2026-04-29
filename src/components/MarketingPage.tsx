@@ -4,7 +4,7 @@ import { F2CTAButton } from './fluent2/FluentAdapters';
 import { useFluent2 } from './Fluent2Context';
 import TopNavigationBarVp from '../imports/TopNavigationBarVp5';
 import heroImage from '../assets/hero-marketing.png';
-import heroAnimatedVideo from '../assets/OneNote_Anim_01.mp4';
+import heroAnimatedGif from '../assets/Hero_Animated.gif';
 import hero01 from '../assets/Hero_01.png';
 import hero02 from '../assets/Hero_02.png';
 import hero03 from '../assets/Hero_03.png';
@@ -79,7 +79,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
 
   const heroImages: Record<string, { src: string; label: string; isVideo?: boolean }> = {
     hero1: { src: heroImage, label: 'Hero 1' },
-    animatedHero1: { src: heroAnimatedVideo, label: 'Animated Hero 1', isVideo: true },
+    animatedHero1: { src: heroAnimatedGif, label: 'Animated Hero 1' },
     hero02: { src: hero01, label: 'Hero 2' },
     hero03: { src: hero02, label: 'Hero 3' },
     hero04: { src: hero03, label: 'Hero 4' },
