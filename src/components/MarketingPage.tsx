@@ -9,12 +9,14 @@ import hero01 from '../assets/Hero_01.png';
 import hero02 from '../assets/Hero_02.png';
 import hero03 from '../assets/Hero_03.png';
 import hero04 from '../assets/Hero_04.png';
+import heroAnimatedMp4 from '../assets/OneNote_Anim_01.mp4';
 import blade1Image from '../assets/Blade_1.png';
 import blade2Image from '../assets/Blade_2.png';
 import blade3Image from '../assets/Blade_3.png';
-import organizeImage from 'figma:asset/02b21b8e0794779246a59dcde3bc3f352c804083.png';
-import surfaceImage from 'figma:asset/b26480fb54ec4d91eb5779a7e716450e394fef53.png';
-import collaborateImage from 'figma:asset/fde8eaff45f9f47c66f1270f89546a030a8f529c.png';
+import oneNote02Image from '../assets/OneNote_02.png';
+import organizeImage from '../assets/organize.png';
+import surfaceImage from '../assets/oneNote_Notes_transparent.png';
+import collaborateImage from '../assets/Collaborate.png';
 // Staff Notebook section images (original Figma assets)
 import staffOrganizeImage from 'figma:asset/bc0f36098eac89e7e03f4fa9355149c3a17f8f97.png';
 import staffCreateImage from 'figma:asset/363c281e8eb45104d916744afa8c2f254668ac50.png';
@@ -79,11 +81,12 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
 
   const heroImages: Record<string, { src: string; label: string; isVideo?: boolean }> = {
     hero1: { src: heroImage, label: 'Hero 1' },
-    animatedHero1: { src: heroAnimatedGif, label: 'Animated Hero 1' },
+    animatedHero1: { src: heroAnimatedMp4, label: 'Animated Hero 1', isVideo: true },
     hero02: { src: hero01, label: 'Hero 2' },
     hero03: { src: hero02, label: 'Hero 3' },
     hero04: { src: hero03, label: 'Hero 4' },
     hero05: { src: hero04, label: 'Hero 5' },
+    finalAnimatedHero: { src: heroAnimatedMp4, label: 'Final Animated Hero', isVideo: true },
   };
   const currentHeroImage = heroImages[selectedHero]?.src || heroImage;
   const isHeroVideo = heroImages[selectedHero]?.isVideo ?? false;
@@ -93,12 +96,14 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
     { key: 'blade1', label: 'Blade 1' },
     { key: 'blade2', label: 'Blade 2' },
     { key: 'blade3', label: 'Blade 3' },
+    { key: 'subBackgrounds', label: 'Show two sub backgrounds' },
   ];
   const bladeImages: Record<string, string> = {
     blade1: blade1Image,
     blade2: blade2Image,
     blade3: blade3Image,
   };
+  const showSubBackgrounds = selectedBlade === 'subBackgrounds';
   
   const tabs = useMemo(() => isStaff
     ? [
@@ -388,7 +393,11 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
       </section>
 
       {/* Develop yourself and your work */}
-      <section className="bg-[#f2f2f2] dark:bg-[#292929] py-20" ref={collaborateSection}>
+      <section
+        className={`py-20 ${showSubBackgrounds ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
+        ref={collaborateSection}
+        style={showSubBackgrounds ? { backgroundImage: `url(${oneNote02Image})` } : undefined}
+      >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div 
@@ -499,7 +508,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-cover bg-center bg-no-repeat w-full" style={isHeroVideo ? undefined : { backgroundImage: `url(${currentHeroImage})` }}>
         {isHeroVideo && (
-          <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0">
+          <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0" style={{ imageRendering: 'auto' }}>
             <source src={currentHeroImage} type="video/mp4" />
           </video>
         )}
@@ -595,9 +604,9 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
 
       {/* Organize Your Course Content Section */}
       <section
-        className={`py-20 ${selectedBlade !== 'none' && bladeImages[selectedBlade] ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
+        className={`py-20 ${(selectedBlade !== 'none' && bladeImages[selectedBlade]) || showSubBackgrounds ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
         ref={organizeSection}
-        style={selectedBlade !== 'none' && bladeImages[selectedBlade] ? { backgroundImage: `url(${bladeImages[selectedBlade]})` } : undefined}
+        style={selectedBlade !== 'none' && bladeImages[selectedBlade] ? { backgroundImage: `url(${bladeImages[selectedBlade]})` } : showSubBackgrounds ? { backgroundImage: `url(${blade1Image})` } : undefined}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
@@ -691,14 +700,18 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
             <img 
               src={surfaceImage} 
               alt="Surface device with OneNote showing biology notebook" 
-              className="w-full h-auto"
+              className="w-[130%] max-w-none h-auto"
             />
           </div>
         </div>
       </section>
 
       {/* Collaborate and provide feedback Section */}
-      <section className="bg-[#f2f2f2] dark:bg-[#292929] py-20" ref={collaborateSection}>
+      <section
+        className={`py-20 ${showSubBackgrounds ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
+        ref={collaborateSection}
+        style={showSubBackgrounds ? { backgroundImage: `url(${oneNote02Image})` } : undefined}
+      >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div 
