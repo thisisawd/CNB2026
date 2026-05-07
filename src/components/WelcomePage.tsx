@@ -3,8 +3,8 @@ import { BookOpen } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { CNBBackgroundGradient } from './CNBBackgroundGradient';
 import BackpackIcon from '../imports/backpack-icon';
-import createNotebookIcon from 'figma:asset/2f173971636b421ff0273180a4600c3546b454b0.png';
-import createStaffNotebookIcon from 'figma:asset/3a975afe9c0dd16c1341fb550f63e4838acc47a0.png';
+import createNotebookIcon from '../assets/CNB_SVG_FINAL.svg';
+import createStaffNotebookIcon from '../assets/SNB_SVG_FINAL.svg';
 import studentsIcon from 'figma:asset/286689605a02652f0f3caddb7bd9d873df1bee4c.png';
 import studentsIconAlt1 from 'figma:asset/ad90c25bb85d91f5b753ee4bac48ec1183080283.png';
 import teachersIcon from 'figma:asset/7f9b25071bcf91f545dddf31f7d7402a0958b02c.png';
@@ -62,7 +62,7 @@ export const WelcomePage = memo(function WelcomePage({ onCreateNotebook, onManag
           <h1 className="text-[#323130] dark:text-[#ffffff] mb-3 sm:mb-4 text-[20px] sm:text-[24px] md:text-[28px] leading-tight">
             {isStaff 
               ? <>Welcome to the OneNote Staff Notebook for Education</>
-              : <>Welcome to <span className="text-[#7719AA]">OneNote Class Notebook</span></>
+              : <>Welcome to <span className="text-[#323130] dark:text-[#ffffff]">OneNote Class Notebook</span></>
             }
           </h1>
           <p className="text-[#605e5c] dark:text-[#d0d0d0] text-[13px] sm:text-[14px] md:text-[15px]">

@@ -1,8 +1,8 @@
 import svgPaths from "./svg-pc5x2o8hcp";
 import { Search as SearchIcon, Menu, X, ChevronDown, Paintbrush, Check } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import classNotebookIcon from 'figma:asset/2f173971636b421ff0273180a4600c3546b454b0.png';
-import staffNotebookIcon from 'figma:asset/3a975afe9c0dd16c1341fb550f63e4838acc47a0.png';
+import classNotebookIcon from '../assets/CNB_SVG_FINAL.svg';
+import staffNotebookIcon from '../assets/SNB_SVG_FINAL.svg';
 
 function Microsoft() {
   return (
@@ -50,9 +50,13 @@ interface TopNavigationBarVpProps {
   blades?: { key: string; label: string }[];
   selectedBlade?: string;
   onBladeChange?: (blade: string) => void;
+  useAnimatedAssets?: boolean;
+  onAnimatedAssetsChange?: (value: boolean) => void;
+  useAnimatedAssetsAlt?: boolean;
+  onAnimatedAssetsAltChange?: (value: boolean) => void;
 }
 
-export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', onNotebookTypeChange, themes = [], selectedTheme, onThemeChange, blades = [], selectedBlade, onBladeChange }: TopNavigationBarVpProps) {
+export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', onNotebookTypeChange, themes = [], selectedTheme, onThemeChange, blades = [], selectedBlade, onBladeChange, useAnimatedAssets = false, onAnimatedAssetsChange, useAnimatedAssetsAlt = false, onAnimatedAssetsAltChange }: TopNavigationBarVpProps) {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -149,6 +153,31 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
                           </button>
                         ))}
                       </>
+                    )}
+                    {onAnimatedAssetsChange && (
+                      <>
+                        <div className="border-t-2 border-gray-300 my-1" />
+                        <button
+                          onClick={() => { onAnimatedAssetsChange(!useAnimatedAssets); setIsThemeOpen(false); }}
+                          className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors ${useAnimatedAssets ? 'bg-gray-100' : ''}`}
+                        >
+                          <span className="font-['Segoe_UI',sans-serif] text-[14px] text-black">Animated Assets</span>
+                          {useAnimatedAssets && (
+                            <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
+                          )}
+                        </button>
+                      </>
+                    )}
+                    {onAnimatedAssetsAltChange && (
+                      <button
+                        onClick={() => { onAnimatedAssetsAltChange(!useAnimatedAssetsAlt); setIsThemeOpen(false); }}
+                        className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors ${useAnimatedAssetsAlt ? 'bg-gray-100' : ''}`}
+                      >
+                        <span className="font-['Segoe_UI',sans-serif] text-[14px] text-black">Animated Assets Alt</span>
+                        {useAnimatedAssetsAlt && (
+                          <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
+                        )}
+                      </button>
                     )}
                   </div>
                 </>
@@ -324,6 +353,31 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
                         </button>
                       ))}
                     </>
+                  )}
+                  {onAnimatedAssetsChange && (
+                    <>
+                      <div className="border-t-2 border-gray-300 my-1" />
+                      <button
+                        onClick={() => { onAnimatedAssetsChange(!useAnimatedAssets); setIsThemeOpen(false); }}
+                        className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors ${useAnimatedAssets ? 'bg-gray-100' : ''}`}
+                      >
+                        <span className="font-['Segoe_UI',sans-serif] text-[14px] text-black">Animated Assets</span>
+                        {useAnimatedAssets && (
+                          <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
+                        )}
+                      </button>
+                    </>
+                  )}
+                  {onAnimatedAssetsAltChange && (
+                    <button
+                      onClick={() => { onAnimatedAssetsAltChange(!useAnimatedAssetsAlt); setIsThemeOpen(false); }}
+                      className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors ${useAnimatedAssetsAlt ? 'bg-gray-100' : ''}`}
+                    >
+                      <span className="font-['Segoe_UI',sans-serif] text-[14px] text-black">Animated Assets Alt</span>
+                      {useAnimatedAssetsAlt && (
+                        <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
+                      )}
+                    </button>
                   )}
                 </div>
               </>

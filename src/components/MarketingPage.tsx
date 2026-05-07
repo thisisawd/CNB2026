@@ -4,23 +4,24 @@ import { F2CTAButton } from './fluent2/FluentAdapters';
 import { useFluent2 } from './Fluent2Context';
 import TopNavigationBarVp from '../imports/TopNavigationBarVp5';
 import heroImage from '../assets/hero-marketing.png';
-import heroAnimatedGif from '../assets/Hero_Animated.gif';
+import heroAnimatedVideo from '../assets/OneNote_Anim_01.mp4';
 import hero01 from '../assets/Hero_01.png';
 import hero02 from '../assets/Hero_02.png';
 import hero03 from '../assets/Hero_03.png';
 import hero04 from '../assets/Hero_04.png';
-import heroAnimatedMp4 from '../assets/OneNote_Anim_01.mp4';
 import blade1Image from '../assets/Blade_1.png';
 import blade2Image from '../assets/Blade_2.png';
 import blade3Image from '../assets/Blade_3.png';
-import oneNote02Image from '../assets/OneNote_02.png';
 import organizeImage from '../assets/organize.png';
-import surfaceImage from '../assets/oneNote_Notes_transparent.png';
+import surfaceImage from '../assets/Create.png';
 import collaborateImage from '../assets/Collaborate.png';
+import organizeAnimatedVideo from '../assets/organize_animated.mp4';
+import createAltImage from '../assets/create_alt.png';
+import createAltVideo from '../assets/create_alt_animated.mp4';
 // Staff Notebook section images (original Figma assets)
-import staffOrganizeImage from 'figma:asset/bc0f36098eac89e7e03f4fa9355149c3a17f8f97.png';
-import staffCreateImage from 'figma:asset/363c281e8eb45104d916744afa8c2f254668ac50.png';
-import staffCollaborateImage from 'figma:asset/576b9f5e7b0658ffb297b7ae32f59e4451197755.png';
+import staffOrganizeImage from '../assets/SNHome_Image1a.png';
+import staffCreateImage from '../assets/SNHome_Image2.png';
+import staffCollaborateImage from '../assets/SNHome_Image3.png';
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { ChevronDown } from 'lucide-react';
 
@@ -35,6 +36,10 @@ interface MarketingPageProps {
   onSelectedHeroChange?: (hero: string) => void;
   selectedBlade?: string;
   onSelectedBladeChange?: (blade: string) => void;
+  useAnimatedAssets?: boolean;
+  onAnimatedAssetsChange?: (value: boolean) => void;
+  useAnimatedAssetsAlt?: boolean;
+  onAnimatedAssetsAltChange?: (value: boolean) => void;
 }
 
 // Custom hook for fade-in animations
@@ -72,7 +77,7 @@ const CLASS_ACCENT_HOVER = '#6b15a0';
 const STAFF_ACCENT = '#008272';
 const STAFF_ACCENT_HOVER = '#006b5e';
 
-export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookTypeChange, featureFlags = {}, onFeatureFlagChange, onFluentComparison, selectedHero = 'hero1', onSelectedHeroChange, selectedBlade = 'none', onSelectedBladeChange }: MarketingPageProps) {
+export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookTypeChange, featureFlags = {}, onFeatureFlagChange, onFluentComparison, selectedHero = 'hero1', onSelectedHeroChange, selectedBlade = 'none', onSelectedBladeChange, useAnimatedAssets = false, onAnimatedAssetsChange, useAnimatedAssetsAlt = false, onAnimatedAssetsAltChange }: MarketingPageProps) {
   const { enabled: fluent2Enabled } = useFluent2();
   const isStaff = notebookType === 'staff';
   const accent = CLASS_ACCENT;
@@ -81,29 +86,27 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
 
   const heroImages: Record<string, { src: string; label: string; isVideo?: boolean }> = {
     hero1: { src: heroImage, label: 'Hero 1' },
-    animatedHero1: { src: heroAnimatedMp4, label: 'Animated Hero 1', isVideo: true },
+    animatedHero1: { src: heroAnimatedVideo, label: 'Animated Hero 1', isVideo: true },
     hero02: { src: hero01, label: 'Hero 2' },
     hero03: { src: hero02, label: 'Hero 3' },
     hero04: { src: hero03, label: 'Hero 4' },
     hero05: { src: hero04, label: 'Hero 5' },
-    finalAnimatedHero: { src: heroAnimatedMp4, label: 'Final Animated Hero', isVideo: true },
   };
   const currentHeroImage = heroImages[selectedHero]?.src || heroImage;
   const isHeroVideo = heroImages[selectedHero]?.isVideo ?? false;
 
   const bladeOptions: { key: string; label: string }[] = [
     { key: 'none', label: 'No blade treatment' },
+    { key: 'everyOther', label: 'Every other blade' },
     { key: 'blade1', label: 'Blade 1' },
     { key: 'blade2', label: 'Blade 2' },
     { key: 'blade3', label: 'Blade 3' },
-    { key: 'subBackgrounds', label: 'Show two sub backgrounds' },
   ];
   const bladeImages: Record<string, string> = {
     blade1: blade1Image,
     blade2: blade2Image,
     blade3: blade3Image,
   };
-  const showSubBackgrounds = selectedBlade === 'subBackgrounds';
   
   const tabs = useMemo(() => isStaff
     ? [
@@ -201,8 +204,13 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
   const renderStaffContent = () => (
     <>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-cover bg-center bg-no-repeat w-full" style={{ backgroundImage: `url(${heroImage})` }}>
-        <div className="w-full px-6 py-20 md:py-32">
+      <section className="relative overflow-hidden bg-cover bg-center bg-no-repeat w-full" style={isHeroVideo ? undefined : { backgroundImage: `url(${heroImage})` }}>
+        {isHeroVideo && (
+          <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0">
+            <source src={currentHeroImage} type="video/mp4" />
+          </video>
+        )}
+        <div className="relative z-10 w-full px-6 py-20 md:py-32">
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div 
@@ -243,7 +251,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
 
       {/* OneNote Staff Notebook Section */}
       <section className="max-w-7xl mx-auto px-6 py-20" ref={oneNoteSection}>
-        <div className="max-w-2xl">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           <div 
             ref={oneNoteAnim.elementRef}
             className={`transition-all duration-500 ease-out ${
@@ -259,17 +267,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
             <p className="font-['Segoe_UI',sans-serif] text-[15px] text-[#505050] dark:text-[#d0d0d0] mb-8 leading-relaxed">
               OneNote Staff Notebooks have a personal workspace for every staff member or teacher, a content library for shared information, and a collaboration space for everyone to work together, all within one powerful notebook.
             </p>
-            <div className="mb-6">
-              {fluent2Enabled ? (
-                <F2CTAButton onClick={onSignIn} accentColor={CLASS_ACCENT} accentHover={CLASS_ACCENT_HOVER}>Staff Notebook Sign In</F2CTAButton>
-              ) : (
-                <Button onClick={onSignIn} className="text-white px-6 py-3 text-[15px] font-['Segoe_UI',sans-serif] rounded" style={{ backgroundColor: CLASS_ACCENT }} onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = CLASS_ACCENT_HOVER)} onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = CLASS_ACCENT)}>Staff Notebook Sign In</Button>
-              )}
-            </div>
-            <p className="font-['Segoe_UI',sans-serif] text-[13px] text-[#505050] dark:text-[#d0d0d0] mb-4 leading-relaxed">
-              Sign in with your Office 365 account from your school to get started.
-            </p>
-            <a href="#" className="font-['Segoe_UI:Semibold',sans-serif] text-[15px] hover:underline inline-block" style={{ color: CLASS_ACCENT }}>
+            <a href="#" className="font-['Segoe_UI:Semibold',sans-serif] text-[15px] hover:underline mb-12 inline-block" style={{ color: CLASS_ACCENT }}>
               Get started with Office 365 Education &gt;
             </a>
 
@@ -289,11 +287,25 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
               • Download the legacy add-in
             </a>
           </div>
+
+          <div className="relative aspect-video overflow-hidden">
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              src="https://www.youtube.com/embed/rU6wl5jyseo"
+              title="OneNote Staff Notebook Overview"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
         </div>
       </section>
 
       {/* Collaborate in one place */}
-      <section className="bg-[#f2f2f2] dark:bg-[#292929] py-20" ref={organizeSection}>
+      <section
+        className={`py-20 ${selectedBlade === 'everyOther' ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
+        ref={organizeSection}
+        style={selectedBlade === 'everyOther' ? { backgroundImage: `url(${blade2Image})` } : undefined}
+      >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div 
@@ -333,7 +345,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
               <img 
                 src={staffOrganizeImage} 
                 alt="OneNote Staff Notebook organize section screenshot" 
-                className="w-full h-auto"
+                className="w-full h-auto scale-110 origin-center "
               />
             </div>
           </div>
@@ -386,7 +398,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
             <img 
               src={staffCreateImage} 
               alt="OneNote Staff Notebook create and share section screenshot" 
-              className="w-full h-auto"
+              className="w-full h-auto "
             />
           </div>
         </div>
@@ -394,9 +406,9 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
 
       {/* Develop yourself and your work */}
       <section
-        className={`py-20 ${showSubBackgrounds ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
+        className={`py-20 ${selectedBlade === 'everyOther' ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
         ref={collaborateSection}
-        style={showSubBackgrounds ? { backgroundImage: `url(${oneNote02Image})` } : undefined}
+        style={selectedBlade === 'everyOther' ? { backgroundImage: `url(${blade3Image})` } : undefined}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
@@ -437,7 +449,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
               <img 
                 src={staffCollaborateImage} 
                 alt="OneNote Staff Notebook collaborate section screenshot" 
-                className="w-full h-auto"
+                className="w-full h-auto "
               />
             </div>
           </div>
@@ -508,7 +520,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-cover bg-center bg-no-repeat w-full" style={isHeroVideo ? undefined : { backgroundImage: `url(${currentHeroImage})` }}>
         {isHeroVideo && (
-          <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0" style={{ imageRendering: 'auto' }}>
+          <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0">
             <source src={currentHeroImage} type="video/mp4" />
           </video>
         )}
@@ -590,7 +602,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
             </a>
           </div>
 
-          <div className="relative aspect-video bg-black rounded overflow-hidden">
+          <div className="relative aspect-video overflow-hidden">
             <iframe
               className="absolute inset-0 w-full h-full"
               src="https://www.youtube.com/embed/iRcJpkK9oKc"
@@ -604,9 +616,9 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
 
       {/* Organize Your Course Content Section */}
       <section
-        className={`py-20 ${(selectedBlade !== 'none' && bladeImages[selectedBlade]) || showSubBackgrounds ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
+        className={`py-20 ${(selectedBlade !== 'none' && selectedBlade !== 'everyOther' && bladeImages[selectedBlade]) || selectedBlade === 'everyOther' ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
         ref={organizeSection}
-        style={selectedBlade !== 'none' && bladeImages[selectedBlade] ? { backgroundImage: `url(${bladeImages[selectedBlade]})` } : showSubBackgrounds ? { backgroundImage: `url(${blade1Image})` } : undefined}
+        style={selectedBlade === 'everyOther' ? { backgroundImage: `url(${blade2Image})` } : selectedBlade !== 'none' && bladeImages[selectedBlade] ? { backgroundImage: `url(${bladeImages[selectedBlade]})` } : undefined}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
@@ -644,11 +656,19 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
                 organizeImageAnim.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
               }`}
             >
-              <img 
-                src={organizeImage} 
-                alt="OneNote Math Class Notebook showing Pythagorean Theorem lesson" 
-                className="w-full h-auto"
-              />
+              {useAnimatedAssets ? (
+                <div className="overflow-hidden">
+                  <video autoPlay loop muted playsInline className="w-[160%] h-auto -ml-[30%] -mt-[18%] -mb-[18%]">
+                    <source src={organizeAnimatedVideo} type="video/mp4" />
+                  </video>
+                </div>
+              ) : (
+                <img 
+                  src={organizeImage} 
+                  alt="OneNote Math Class Notebook showing Pythagorean Theorem lesson" 
+                  className="w-full h-auto "
+                />
+              )}
             </div>
           </div>
         </div>
@@ -697,20 +717,26 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
               createImageAnim.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
             }`}
           >
-            <img 
-              src={surfaceImage} 
-              alt="Surface device with OneNote showing biology notebook" 
-              className="w-[130%] max-w-none h-auto"
-            />
+            {useAnimatedAssetsAlt ? (
+              <video autoPlay loop muted playsInline className="w-[115%] max-w-none h-auto">
+                <source src={createAltVideo} type="video/mp4" />
+              </video>
+            ) : (
+              <img 
+                src={surfaceImage} 
+                alt="Surface device with OneNote showing biology notebook" 
+                className="w-[115%] max-w-none h-auto "
+              />
+            )}
           </div>
         </div>
       </section>
 
       {/* Collaborate and provide feedback Section */}
       <section
-        className={`py-20 ${showSubBackgrounds ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
+        className={`py-20 ${selectedBlade === 'everyOther' ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
         ref={collaborateSection}
-        style={showSubBackgrounds ? { backgroundImage: `url(${oneNote02Image})` } : undefined}
+        style={selectedBlade === 'everyOther' ? { backgroundImage: `url(${blade3Image})` } : undefined}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
@@ -751,7 +777,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
               <img 
                 src={collaborateImage} 
                 alt="OneNote Math Class Notebook showing algebra homework with teacher feedback" 
-                className="w-full h-auto"
+                className="w-full h-auto "
               />
             </div>
           </div>
@@ -894,6 +920,10 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
           blades={bladeOptions}
           selectedBlade={selectedBlade}
           onBladeChange={onSelectedBladeChange}
+          useAnimatedAssets={useAnimatedAssets}
+          onAnimatedAssetsChange={onAnimatedAssetsChange}
+          useAnimatedAssetsAlt={useAnimatedAssetsAlt}
+          onAnimatedAssetsAltChange={onAnimatedAssetsAltChange}
         />
       </div>
 

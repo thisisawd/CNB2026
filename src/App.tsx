@@ -24,8 +24,8 @@ import { Footer } from './components/Footer';
 import { SignInDialog } from './components/SignInDialog';
 import { FluentComparisonPage } from './components/FluentComparisonPage';
 import { Fluent2Provider } from './components/Fluent2Context';
-import classNotebookFavicon from 'figma:asset/2f173971636b421ff0273180a4600c3546b454b0.png';
-import staffNotebookFavicon from 'figma:asset/3a975afe9c0dd16c1341fb550f63e4838acc47a0.png';
+import classNotebookFavicon from './assets/CNB_SVG_FINAL.svg';
+import staffNotebookFavicon from './assets/SNB_SVG_FINAL.svg';
 
 interface Notebook {
   id: string;
@@ -71,7 +71,9 @@ export default function App() {
     removedStudents: [] as Array<{ name: string; email: string; photo?: string }>,
   });
   const [selectedHero, setSelectedHero] = useState('animatedHero1');
-  const [selectedBlade, setSelectedBlade] = useState('blade2');
+  const [selectedBlade, setSelectedBlade] = useState('everyOther');
+  const [useAnimatedAssets, setUseAnimatedAssets] = useState(false);
+  const [useAnimatedAssetsAlt, setUseAnimatedAssetsAlt] = useState(true);
   const [featureFlags, setFeatureFlags] = useState<Record<string, boolean>>({
     teacher_student_icon_alt1: true,
     fluent2_components: false,
@@ -254,6 +256,10 @@ export default function App() {
             onSelectedHeroChange={setSelectedHero}
             selectedBlade={selectedBlade}
             onSelectedBladeChange={setSelectedBlade}
+            useAnimatedAssets={useAnimatedAssets}
+            onAnimatedAssetsChange={setUseAnimatedAssets}
+            useAnimatedAssetsAlt={useAnimatedAssetsAlt}
+            onAnimatedAssetsAltChange={setUseAnimatedAssetsAlt}
           />
           <SignInDialog
             isOpen={showSignInDialog}
