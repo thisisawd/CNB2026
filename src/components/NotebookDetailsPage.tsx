@@ -208,7 +208,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] p-8" style={{ '--accent': accent, '--accent-hover': accentHover } as any}>
+    <div className="min-h-screen bg-[#f5f5f5] px-4 py-6 md:p-8" style={{ '--accent': accent, '--accent-hover': accentHover } as any}>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -272,7 +272,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
         </div>
 
         {/* Main Content */}
-        <div className="grid grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {/* Left Column - Student Sections */}
           <div>
             <div className="flex items-center gap-2 mb-4">
@@ -394,6 +394,99 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
               </button>
             )}
 
+            {/* Settings - shown inline on mobile, hidden on desktop */}
+            <div className="md:hidden space-y-8 mt-8 mb-8">
+              {/* Teacher-Only Section Group */}
+              <div>
+                <h2 className="text-[#323130] mb-3">
+                  Teacher-Only section group
+                </h2>
+                <div className="flex items-center gap-2 text-[#107c10]">
+                  <Check className="w-5 h-5" />
+                  <span>Enabled by default</span>
+                </div>
+              </div>
+
+              {/* Lock Collaboration Space */}
+              <div>
+                <h2 className="text-[#323130] mb-3">
+                  Lock Collaboration Space
+                </h2>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => setIsCollaborationLocked(!isCollaborationLocked)}
+                    className={`relative w-11 h-6 rounded-full transition-colors ${
+                      isCollaborationLocked ? '' : 'bg-[#8a8886]'
+                    }`}
+                    style={isCollaborationLocked ? { backgroundColor: accent } : undefined}
+                  >
+                    <div
+                      className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition-transform ${
+                        isCollaborationLocked ? 'translate-x-5' : 'translate-x-0.5'
+                      }`}
+                    />
+                  </button>
+                  <span className="text-[#323130]">
+                    {isCollaborationLocked ? 'Locked' : 'Unlocked'}
+                  </span>
+                </div>
+              </div>
+
+              {/* Collaboration Space Permissions */}
+              <div>
+                <button
+                  onClick={() => setShowPermissionsDialog(true)}
+                  className="mb-2"
+                  style={{ color: accent }}
+                >
+                  Collaboration Space permissions
+                </button>
+                <p className="text-[#605e5c] text-sm">
+                  Give specific {studentLabelPlural} permission to view and edit these sections
+                </p>
+              </div>
+
+              {/* Parent and Guardian Links */}
+              <div>
+                <button
+                  onClick={() => setShowParentLinksDialog(true)}
+                  className="mb-2"
+                  style={{ color: accent }}
+                >
+                  {parentLinksTitle}
+                </button>
+                <p className="text-[#605e5c] text-sm">
+                  {isStaff ? 'Create and manage guest links for members' : 'Create and manage guest links for parents'}
+                </p>
+              </div>
+
+              {/* Notebook Link */}
+              <div>
+                <h2 className="text-[#323130] mb-3">
+                  Notebook link
+                </h2>
+                <div className="flex gap-0">
+                  <input
+                    type="text"
+                    value={notebookLink}
+                    readOnly
+                    className="flex-1 min-w-0 px-3 py-2 bg-white border border-[#d1d1d1] border-r-0 text-[#323130] text-sm outline-none truncate"
+                  />
+                  <Button
+                    onClick={handleCopyLink}
+                    className="text-white px-6 rounded-l-none transition-colors flex-shrink-0"
+                    style={{ backgroundColor: linkCopied ? '#107c10' : accent }}
+                  >
+                    {linkCopied ? (
+                      <Check className="w-4 h-4" />
+                    ) : (
+                      'Copy'
+                    )}
+                  </Button>
+                </div>
+              </div>
+            </div>
+
             <div className="flex gap-3">
               <Button
                 onClick={handleSave}
@@ -413,8 +506,8 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
             </div>
           </div>
 
-          {/* Right Column - Settings */}
-          <div className="space-y-8">
+          {/* Right Column - Settings (hidden on mobile, shown on desktop) */}
+          <div className="hidden md:block space-y-8">
             {/* Teacher-Only Section Group */}
             <div>
               <h2 className="text-[#323130] mb-3">
