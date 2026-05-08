@@ -214,19 +214,19 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div 
-                className={`transition-all duration-[750ms] ease-out ${
+                className={`mobile-text-glow text-center md:text-left transition-all duration-[750ms] ease-out ${
                   hasScrolled 
                     ? 'opacity-100 translate-y-0' 
                     : 'opacity-0 translate-y-[200px]'
                 }`}
               >
-                <h1 className="font-['Segoe_UI',sans-serif] font-semibold text-[40px] leading-[1.2] mb-6 text-[#323130] dark:text-white">
+                <h1 className="font-['Segoe_UI',sans-serif] font-semibold text-[32px] md:text-[40px] leading-[1.15] mb-4 md:mb-6 text-[#323130] dark:text-white">
                   OneNote Staff Notebook
                 </h1>
-                <p className="font-['Segoe_UI',sans-serif] font-light text-[20px] leading-[1.5] mb-8 text-[#323130] dark:text-[#d0d0d0]">
+                <p className="font-['Segoe_UI',sans-serif] font-light text-[16px] md:text-[20px] leading-[1.5] mb-8 text-[#323130] dark:text-[#d0d0d0]">
                   A digital notebook for school leaders and staff. Manage your school and collaborate with your entire team.
                 </p>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                   {fluent2Enabled ? (
                     <>
                       <F2CTAButton onClick={onSignIn} accentColor="#262626" accentHover="#1a1a1a">Sign in</F2CTAButton>
@@ -302,7 +302,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
 
       {/* Collaborate in one place */}
       <section
-        className={`py-20 ${selectedBlade === 'everyOther' ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
+        className={`mobile-blade-fade py-20 ${selectedBlade === 'everyOther' ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
         ref={organizeSection}
         style={selectedBlade === 'everyOther' ? { backgroundImage: `url(${blade2Image})` } : undefined}
       >
@@ -310,11 +310,11 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div 
               ref={organizeAnim.elementRef}
-              className={`transition-all duration-500 ease-out ${
+              className={`mobile-text-glow text-center md:text-left transition-all duration-500 ease-out ${
                 organizeAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
             >
-              <h2 className="font-['Segoe_UI:Light',sans-serif] text-[46px] text-[#505050] dark:text-white mb-6 leading-tight">
+              <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] dark:text-white mb-4 md:mb-6 leading-tight">
                 Collaborate in one place
               </h2>
               <p className="font-['Segoe_UI:Light',sans-serif] text-[20px] text-[#505050] dark:text-[#d0d0d0] mb-6 leading-relaxed">
@@ -357,11 +357,11 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div 
             ref={createAnim.elementRef}
-            className={`transition-all duration-500 ease-out ${
+            className={`text-center md:text-left transition-all duration-500 ease-out ${
               createAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}
           >
-            <h2 className="font-['Segoe_UI:Light',sans-serif] text-[46px] text-[#505050] dark:text-white mb-6 leading-tight">
+            <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] dark:text-white mb-4 md:mb-6 leading-tight">
               Share information with everyone
             </h2>
             <p className="font-['Segoe_UI',sans-serif] text-[15px] text-[#505050] dark:text-[#d0d0d0] mb-6 leading-relaxed">
@@ -406,7 +406,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
 
       {/* Develop yourself and your work */}
       <section
-        className={`py-20 ${selectedBlade === 'everyOther' ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
+        className={`mobile-blade-fade py-20 ${selectedBlade === 'everyOther' ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
         ref={collaborateSection}
         style={selectedBlade === 'everyOther' ? { backgroundImage: `url(${blade3Image})` } : undefined}
       >
@@ -414,11 +414,11 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div 
               ref={collaborateAnim.elementRef}
-              className={`transition-all duration-500 ease-out ${
+              className={`mobile-text-glow text-center md:text-left transition-all duration-500 ease-out ${
                 collaborateAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
             >
-              <h2 className="font-['Segoe_UI:Light',sans-serif] text-[46px] text-[#505050] dark:text-white mb-6 leading-tight">
+              <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] dark:text-white mb-4 md:mb-6 leading-tight">
                 Develop yourself and your work
               </h2>
               <p className="font-['Segoe_UI',sans-serif] text-[15px] text-[#505050] dark:text-[#d0d0d0] mb-6 leading-relaxed">
@@ -464,7 +464,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
             getStartedAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >
-          <h2 className="font-['Segoe_UI:Light',sans-serif] text-[46px] text-[#505050] dark:text-white mb-12 leading-tight">
+          <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] dark:text-white mb-8 md:mb-12 leading-tight">
             Get Started Now
           </h2>
           <div className="grid md:grid-cols-2 gap-16 items-start">
@@ -528,19 +528,19 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div
-                className={`transition-all duration-[750ms] ease-out ${
+                className={`mobile-text-glow text-center md:text-left transition-all duration-[750ms] ease-out ${
                   hasScrolled
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-[200px]'
                 }`}
               >
-                <h1 className="font-['Segoe_UI',sans-serif] font-semibold text-[40px] leading-[1.2] mb-6 text-[#323130] dark:text-white">
+                <h1 className="font-['Segoe_UI',sans-serif] font-semibold text-[32px] md:text-[40px] leading-[1.15] mb-4 md:mb-6 text-[#323130] dark:text-white">
                   OneNote Class Notebook
                 </h1>
-                <p className="font-['Segoe_UI',sans-serif] font-light text-[20px] leading-[1.5] mb-8 text-[#323130] dark:text-[#d0d0d0]">
+                <p className="font-['Segoe_UI',sans-serif] font-light text-[16px] md:text-[20px] leading-[1.5] mb-8 text-[#323130] dark:text-[#d0d0d0]">
                   A digital notebook for all your students. Organize lesson materials and collaborate with teachers and students.
                 </p>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                   {fluent2Enabled ? (
                     <>
                       <F2CTAButton onClick={onSignIn} accentColor="#262626" accentHover="#1a1a1a">Sign in</F2CTAButton>
@@ -616,7 +616,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
 
       {/* Organize Your Course Content Section */}
       <section
-        className={`py-20 ${(selectedBlade !== 'none' && selectedBlade !== 'everyOther' && bladeImages[selectedBlade]) || selectedBlade === 'everyOther' ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
+        className={`mobile-blade-fade py-20 ${(selectedBlade !== 'none' && selectedBlade !== 'everyOther' && bladeImages[selectedBlade]) || selectedBlade === 'everyOther' ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
         ref={organizeSection}
         style={selectedBlade === 'everyOther' ? { backgroundImage: `url(${blade2Image})` } : selectedBlade !== 'none' && bladeImages[selectedBlade] ? { backgroundImage: `url(${bladeImages[selectedBlade]})` } : undefined}
       >
@@ -624,11 +624,11 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div 
               ref={organizeAnim.elementRef}
-              className={`transition-all duration-500 ease-out ${
+              className={`mobile-text-glow text-center md:text-left transition-all duration-500 ease-out ${
                 organizeAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
             >
-              <h2 className="font-['Segoe_UI:Light',sans-serif] text-[46px] text-[#505050] dark:text-white mb-6 leading-tight">
+              <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] dark:text-white mb-4 md:mb-6 leading-tight">
                 Organize your course content
               </h2>
               <p className="font-['Segoe_UI:Light',sans-serif] text-[20px] text-[#505050] dark:text-[#d0d0d0] mb-6 leading-relaxed">
@@ -679,11 +679,11 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div 
             ref={createAnim.elementRef}
-            className={`transition-all duration-500 ease-out ${
+            className={`text-center md:text-left transition-all duration-500 ease-out ${
               createAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}
           >
-            <h2 className="font-['Segoe_UI:Light',sans-serif] text-[46px] text-[#505050] dark:text-white mb-6 leading-tight">
+            <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] dark:text-white mb-4 md:mb-6 leading-tight">
               Create & deliver interactive lessons
             </h2>
             <p className="font-['Segoe_UI',sans-serif] text-[15px] text-[#505050] dark:text-[#d0d0d0] mb-6 leading-relaxed">
@@ -734,7 +734,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
 
       {/* Collaborate and provide feedback Section */}
       <section
-        className={`py-20 ${selectedBlade === 'everyOther' ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
+        className={`mobile-blade-fade py-20 ${selectedBlade === 'everyOther' ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2] dark:bg-[#292929]'}`}
         ref={collaborateSection}
         style={selectedBlade === 'everyOther' ? { backgroundImage: `url(${blade3Image})` } : undefined}
       >
@@ -742,11 +742,11 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div 
               ref={collaborateAnim.elementRef}
-              className={`transition-all duration-500 ease-out ${
+              className={`mobile-text-glow text-center md:text-left transition-all duration-500 ease-out ${
                 collaborateAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
             >
-              <h2 className="font-['Segoe_UI:Light',sans-serif] text-[46px] text-[#505050] dark:text-white mb-6 leading-tight">
+              <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] dark:text-white mb-4 md:mb-6 leading-tight">
                 Collaborate and provide feedback
               </h2>
               <p className="font-['Segoe_UI',sans-serif] text-[15px] text-[#505050] dark:text-[#d0d0d0] mb-6 leading-relaxed">
@@ -792,7 +792,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
             getStartedAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >
-          <h2 className="font-['Segoe_UI:Light',sans-serif] text-[46px] text-[#505050] dark:text-white mb-12 leading-tight">
+          <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] dark:text-white mb-8 md:mb-12 leading-tight">
             Get Started Now
           </h2>
           <div className="grid md:grid-cols-2 gap-16 items-start">

@@ -154,6 +154,56 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/*
+ * Mobile text glow — improves readability when text overlays background images
+ * at small viewports. Uses a soft white halo (dark halo in dark mode) to meet
+ * WCAG AA 4.5:1 contrast. Removed at md+ where layout separates text from images.
+ */
+@media (max-width: 767px) {
+  .mobile-text-glow h1,
+  .mobile-text-glow h2,
+  .mobile-text-glow h3,
+  .mobile-text-glow p,
+  .mobile-text-glow a {
+    text-shadow:
+      0 0 8px rgba(255, 255, 255, 0.9),
+      0 0 16px rgba(255, 255, 255, 0.6),
+      0 0 24px rgba(255, 255, 255, 0.3);
+  }
+
+  .dark .mobile-text-glow h1,
+  .dark .mobile-text-glow h2,
+  .dark .mobile-text-glow h3,
+  .dark .mobile-text-glow p,
+  .dark .mobile-text-glow a {
+    text-shadow:
+      0 0 8px rgba(0, 0, 0, 0.9),
+      0 0 16px rgba(0, 0, 0, 0.6),
+      0 0 24px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Fade blade background images on mobile for readability */
+  .mobile-blade-fade {
+    position: relative;
+  }
+  .mobile-blade-fade::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.25);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .mobile-blade-fade > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .dark .mobile-blade-fade::before {
+    background: rgba(0, 0, 0, 0.25);
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
