@@ -4,8 +4,7 @@ import { Button } from './ui/button';
 import { toast } from 'sonner@2.0.3';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
 import { Checkbox } from './ui/checkbox';
-import tabIcon from 'figma:asset/7e320f661c33c556f5b01bc9c68012ced7cf4356.png';
-
+import { SectionTabIcon } from './shared/SectionTabIcon';
 interface Notebook {
   id: string;
   name: string;
@@ -208,13 +207,13 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] px-4 py-6 md:p-8" style={{ '--accent': accent, '--accent-hover': accentHover } as any}>
+    <div className="min-h-screen bg-[#f5f5f5] dark:bg-[#1e1e1e] px-4 py-6 md:p-8" style={{ '--accent': accent, '--accent-hover': accentHover } as any}>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <button 
             onClick={onBack}
-            className="flex items-center gap-2 text-[#605e5c] hover:text-[#323130] transition-all mb-6 -ml-2 px-2 py-1 rounded hover:bg-[#f3f2f1]"
+            className="flex items-center gap-2 text-[#605e5c] dark:text-[#d0d0d0] hover:text-[#323130] dark:hover:text-[#ffffff] transition-all mb-6 -ml-2 px-2 py-1 rounded hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d]"
           >
             <ChevronLeft className="w-5 h-5" />
             <span>Back</span>
@@ -222,14 +221,14 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
 
           {/* Deletion Warning Banner */}
           {deletedSectionsCount > 0 && showDeletionBanner && (
-            <div className="flex items-center gap-3 bg-[#fde7e9] border border-[#e1dfdd] rounded px-3 py-3 mb-6">
+            <div className="flex items-center gap-3 bg-[#fde7e9] dark:bg-[#3d2225] border border-[#e1dfdd] dark:border-[#3d3d3d] rounded px-3 py-3 mb-6">
               <AlertCircle className="w-5 h-5 text-[#a4262c] flex-shrink-0" />
               <div className="flex-1 min-w-0">
-                <span className="text-[#323130]" style={{ fontSize: '14px' }}>
+                <span className="text-[#323130] dark:text-[#ffffff]" style={{ fontSize: '14px' }}>
                   <strong>Sections will be deleted.</strong>
                 </span>
                 {' '}
-                <span className="text-[#605e5c]" style={{ fontSize: '14px' }}>
+                <span className="text-[#605e5c] dark:text-[#d0d0d0]" style={{ fontSize: '14px' }}>
                   {deletedSectionsCount} {deletedSectionsCount === 1 ? 'section' : 'sections'} and all pages in {deletedSectionsCount === 1 ? 'that section' : 'those sections'} will be permanently deleted.
                 </span>
               </div>
@@ -244,7 +243,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                 <Button
                   onClick={handleCancel}
                   variant="ghost"
-                  className="text-[#323130] hover:bg-[#f3f2f1] rounded px-4 py-1.5 h-auto"
+                  className="text-[#323130] dark:text-[#ffffff] hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d] rounded px-4 py-1.5 h-auto"
                   style={{ fontSize: '14px' }}
                 >
                   Cancel
@@ -252,7 +251,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
               </div>
               <button
                 onClick={() => setShowDeletionBanner(false)}
-                className="text-[#605e5c] hover:text-[#323130] p-1 flex-shrink-0"
+                className="text-[#605e5c] dark:text-[#d0d0d0] hover:text-[#323130] dark:hover:text-[#ffffff] p-1 flex-shrink-0"
                 aria-label="Dismiss banner"
               >
                 <X className="w-5 h-5" />
@@ -261,7 +260,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
           )}
           
           <div className="flex items-center justify-between">
-            <h1 className="text-[#323130]" style={{ fontSize: '24px', fontWeight: '600' }}>
+            <h1 className="text-[#323130] dark:text-[#ffffff]" style={{ fontSize: '24px', fontWeight: '600' }}>
               Manage {notebook.name}
             </h1>
             <button className="flex items-center gap-2" style={{ color: accent }}>
@@ -276,7 +275,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
           {/* Left Column - Student Sections */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <h2 className="text-[#323130]">
+              <h2 className="text-[#323130] dark:text-[#ffffff]">
                 {isStaff ? 'Member sections' : 'Student sections'}
               </h2>
             </div>
@@ -284,12 +283,12 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
             <div className="space-y-3 mb-4">
               {/* Notebook Title Edit */}
               <div
-                className={`flex items-center gap-3 p-3 bg-white border rounded transition-all ${
-                  isEditingNotebookName ? '' : 'border-[#d1d1d1]'
+                className={`flex items-center gap-3 p-3 bg-white dark:bg-[#1e1e1e] border rounded transition-all ${
+                  isEditingNotebookName ? '' : 'border-[#d1d1d1] dark:border-[#5d5d5d]'
                 }`}
                 style={isEditingNotebookName ? { borderColor: accent } : undefined}
               >
-                <img src={tabIcon} alt="" className="w-4 h-6 flex-shrink-0" style={{ objectFit: 'contain' }} />
+                <SectionTabIcon className="w-4 h-6 flex-shrink-0 text-[#323130] dark:text-white" />
                 {isEditingNotebookName ? (
                   <input
                     type="text"
@@ -307,11 +306,11 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                     autoFocus
                   />
                 ) : (
-                  <span className="flex-1 text-[#323130]">{notebookName}</span>
+                  <span className="flex-1 text-[#323130] dark:text-[#ffffff]">{notebookName}</span>
                 )}
                 <button
                   onClick={handleEditNotebookName}
-                  className="text-[#605e5c] hover:text-[#323130] p-1"
+                  className="text-[#605e5c] dark:text-[#d0d0d0] hover:text-[#323130] dark:hover:text-[#ffffff] p-1"
                 >
                   <Pencil className="w-4 h-4" />
                 </button>
@@ -320,12 +319,12 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
               {sections.map((section, index) => (
                 <div
                   key={index}
-                  className={`flex items-center gap-3 p-3 bg-white border rounded transition-all ${
-                    editingIndex === index ? '' : 'border-[#d1d1d1]'
+                  className={`flex items-center gap-3 p-3 bg-white dark:bg-[#1e1e1e] border rounded transition-all ${
+                    editingIndex === index ? '' : 'border-[#d1d1d1] dark:border-[#5d5d5d]'
                   }`}
                   style={editingIndex === index ? { borderColor: accent } : undefined}
                 >
-                  <img src={tabIcon} alt="" className="w-4 h-6 flex-shrink-0" style={{ objectFit: 'contain' }} />
+                  <SectionTabIcon className="w-4 h-6 flex-shrink-0 text-[#323130] dark:text-white" />
                   {editingIndex === index ? (
                     <input
                       type="text"
@@ -343,17 +342,17 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                       autoFocus
                     />
                   ) : (
-                    <span className="flex-1 text-[#323130]">{section}</span>
+                    <span className="flex-1 text-[#323130] dark:text-[#ffffff]">{section}</span>
                   )}
                   <button
                     onClick={() => handleEditSection(index)}
-                    className="text-[#605e5c] hover:text-[#323130] p-1"
+                    className="text-[#605e5c] dark:text-[#d0d0d0] hover:text-[#323130] dark:hover:text-[#ffffff] p-1"
                   >
                     <Pencil className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => handleDeleteSection(index)}
-                    className="text-[#605e5c] hover:text-[#323130] p-1"
+                    className="text-[#605e5c] dark:text-[#d0d0d0] hover:text-[#323130] dark:hover:text-[#ffffff] p-1"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -362,8 +361,8 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
             </div>
 
             {isAddingNew ? (
-              <div className="flex items-center gap-3 p-3 bg-white border rounded mb-4" style={{ borderColor: accent }}>
-                <img src={tabIcon} alt="" className="w-4 h-6 flex-shrink-0" style={{ objectFit: 'contain' }} />
+              <div className="flex items-center gap-3 p-3 bg-white dark:bg-[#1e1e1e] border rounded mb-4" style={{ borderColor: accent }}>
+                <SectionTabIcon className="w-4 h-6 flex-shrink-0 text-[#323130] dark:text-white" />
                 <input
                   type="text"
                   value={newSectionName}
@@ -384,7 +383,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
             ) : (
               <button
                 onClick={() => setIsAddingNew(true)}
-                className="flex items-center gap-2 text-[#323130] mb-6"
+                className="flex items-center gap-2 text-[#323130] dark:text-[#ffffff] mb-6"
                 style={{ color: undefined }}
                 onMouseEnter={(e) => e.currentTarget.style.color = accent}
                 onMouseLeave={(e) => e.currentTarget.style.color = '#323130'}
@@ -398,7 +397,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
             <div className="md:hidden space-y-8 mt-8 mb-8">
               {/* Teacher-Only Section Group */}
               <div>
-                <h2 className="text-[#323130] mb-3">
+                <h2 className="text-[#323130] dark:text-[#ffffff] mb-3">
                   Teacher-Only section group
                 </h2>
                 <div className="flex items-center gap-2 text-[#107c10]">
@@ -409,7 +408,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
 
               {/* Lock Collaboration Space */}
               <div>
-                <h2 className="text-[#323130] mb-3">
+                <h2 className="text-[#323130] dark:text-[#ffffff] mb-3">
                   Lock Collaboration Space
                 </h2>
                 <div className="flex items-center gap-3">
@@ -421,12 +420,12 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                     style={isCollaborationLocked ? { backgroundColor: accent } : undefined}
                   >
                     <div
-                      className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition-transform ${
+                      className={`absolute top-0.5 w-5 h-5 bg-white dark:bg-[#1e1e1e] rounded-full transition-transform ${
                         isCollaborationLocked ? 'translate-x-5' : 'translate-x-0.5'
                       }`}
                     />
                   </button>
-                  <span className="text-[#323130]">
+                  <span className="text-[#323130] dark:text-[#ffffff]">
                     {isCollaborationLocked ? 'Locked' : 'Unlocked'}
                   </span>
                 </div>
@@ -441,7 +440,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                 >
                   Collaboration Space permissions
                 </button>
-                <p className="text-[#605e5c] text-sm">
+                <p className="text-[#605e5c] dark:text-[#d0d0d0] text-sm">
                   Give specific {studentLabelPlural} permission to view and edit these sections
                 </p>
               </div>
@@ -455,14 +454,14 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                 >
                   {parentLinksTitle}
                 </button>
-                <p className="text-[#605e5c] text-sm">
+                <p className="text-[#605e5c] dark:text-[#d0d0d0] text-sm">
                   {isStaff ? 'Create and manage guest links for members' : 'Create and manage guest links for parents'}
                 </p>
               </div>
 
               {/* Notebook Link */}
               <div>
-                <h2 className="text-[#323130] mb-3">
+                <h2 className="text-[#323130] dark:text-[#ffffff] mb-3">
                   Notebook link
                 </h2>
                 <div className="flex gap-0">
@@ -470,7 +469,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                     type="text"
                     value={notebookLink}
                     readOnly
-                    className="flex-1 min-w-0 px-3 py-2 bg-white border border-[#d1d1d1] border-r-0 text-[#323130] text-sm outline-none truncate"
+                    className="flex-1 min-w-0 px-3 py-2 bg-white dark:bg-[#1e1e1e] border border-[#d1d1d1] dark:border-[#5d5d5d] border-r-0 text-[#323130] dark:text-[#ffffff] text-sm outline-none truncate"
                   />
                   <Button
                     onClick={handleCopyLink}
@@ -499,7 +498,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
               <Button
                 onClick={handleCancel}
                 variant="ghost"
-                className="text-[#323130] hover:bg-[#f3f2f1] rounded"
+                className="text-[#323130] dark:text-[#ffffff] hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d] rounded"
               >
                 Cancel
               </Button>
@@ -510,7 +509,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
           <div className="hidden md:block space-y-8">
             {/* Teacher-Only Section Group */}
             <div>
-              <h2 className="text-[#323130] mb-3">
+              <h2 className="text-[#323130] dark:text-[#ffffff] mb-3">
                 Teacher-Only section group
               </h2>
               <div className="flex items-center gap-2 text-[#107c10]">
@@ -521,7 +520,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
 
             {/* Lock Collaboration Space */}
             <div>
-              <h2 className="text-[#323130] mb-3">
+              <h2 className="text-[#323130] dark:text-[#ffffff] mb-3">
                 Lock Collaboration Space
               </h2>
               <div className="flex items-center gap-3">
@@ -533,12 +532,12 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                   style={isCollaborationLocked ? { backgroundColor: accent } : undefined}
                 >
                   <div
-                    className={`absolute top-0.5 w-5 h-5 bg-white rounded-full transition-transform ${
+                    className={`absolute top-0.5 w-5 h-5 bg-white dark:bg-[#1e1e1e] rounded-full transition-transform ${
                       isCollaborationLocked ? 'translate-x-5' : 'translate-x-0.5'
                     }`}
                   />
                 </button>
-                <span className="text-[#323130]">
+                <span className="text-[#323130] dark:text-[#ffffff]">
                   {isCollaborationLocked ? 'Locked' : 'Unlocked'}
                 </span>
               </div>
@@ -553,7 +552,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
               >
                 Collaboration Space permissions
               </button>
-              <p className="text-[#605e5c] text-sm">
+              <p className="text-[#605e5c] dark:text-[#d0d0d0] text-sm">
                 Give specific {studentLabelPlural} permission to view and edit these sections
               </p>
             </div>
@@ -567,14 +566,14 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
               >
                 {parentLinksTitle}
               </button>
-              <p className="text-[#605e5c] text-sm">
+              <p className="text-[#605e5c] dark:text-[#d0d0d0] text-sm">
                 {isStaff ? 'Create and manage guest links for members' : 'Create and manage guest links for parents'}
               </p>
             </div>
 
             {/* Notebook Link */}
             <div>
-              <h2 className="text-[#323130] mb-3">
+              <h2 className="text-[#323130] dark:text-[#ffffff] mb-3">
                 Notebook link
               </h2>
               <div className="flex gap-0">
@@ -582,7 +581,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                   type="text"
                   value={notebookLink}
                   readOnly
-                  className="flex-1 px-3 py-2 bg-white border border-[#d1d1d1] border-r-0 text-[#323130] text-sm outline-none"
+                  className="flex-1 px-3 py-2 bg-white dark:bg-[#1e1e1e] border border-[#d1d1d1] dark:border-[#5d5d5d] border-r-0 text-[#323130] dark:text-[#ffffff] text-sm outline-none"
                 />
                 <Button
                   onClick={handleCopyLink}
@@ -603,7 +602,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
 
       {/* Permissions Dialog */}
       <Dialog open={showPermissionsDialog} onOpenChange={setShowPermissionsDialog}>
-        <DialogContent className="max-w-[968px] sm:max-w-[968px] bg-white p-0 gap-0 rounded-lg border-0 shadow-2xl overflow-hidden" style={{ maxHeight: '600px' }}>
+        <DialogContent className="max-w-[968px] sm:max-w-[968px] bg-white dark:bg-[#1e1e1e] p-0 gap-0 rounded-lg border-0 shadow-2xl overflow-hidden" style={{ maxHeight: '600px' }}>
           <DialogTitle className="sr-only">
             {selectedSection ? 'Lock Collaboration Space' : 'Manage Section Permissions'}
           </DialogTitle>
@@ -616,15 +615,15 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
           {!selectedSection ? (
             <>
               {/* Dialog Header - Section List */}
-              <div className="px-6 pt-6 pb-4 border-b border-[#edebe9]">
-                <h2 className="text-[#323130] m-0" style={{ fontSize: '20px' }} aria-hidden="true">
+              <div className="px-6 pt-6 pb-4 border-b border-[#edebe9] dark:border-[#3d3d3d]">
+                <h2 className="text-[#323130] dark:text-[#ffffff] m-0" style={{ fontSize: '20px' }} aria-hidden="true">
                   Manage Section Permissions
                 </h2>
               </div>
 
               {/* Dialog Body - Section List */}
               <div className="px-6 py-4">
-                <p className="text-[#605e5c] mb-6" style={{ fontSize: '14px' }} aria-hidden="true">
+                <p className="text-[#605e5c] dark:text-[#d0d0d0] mb-6" style={{ fontSize: '14px' }} aria-hidden="true">
                   Give specific students permission to view and edit these sections (e.g., for group projects).
                 </p>
 
@@ -633,19 +632,19 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                   {permissionSections.map((section, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between py-3 border-b border-[#edebe9]"
+                      className="flex items-center justify-between py-3 border-b border-[#edebe9] dark:border-[#3d3d3d]"
                     >
                       <div className="flex items-center gap-3 flex-1">
-                        <img src={tabIcon} alt="" className="w-3 h-6 flex-shrink-0" style={{ objectFit: 'contain' }} />
-                        <span className="text-[#323130]" style={{ fontSize: '14px' }}>
+                        <SectionTabIcon className="w-3 h-6 flex-shrink-0 text-[#323130] dark:text-white" />
+                        <span className="text-[#323130] dark:text-[#ffffff]" style={{ fontSize: '14px' }}>
                           {section.name}
                         </span>
                       </div>
                       <div className="flex items-center gap-6">
-                        <span className="text-[#605e5c]" style={{ fontSize: '14px' }}>
+                        <span className="text-[#605e5c] dark:text-[#d0d0d0]" style={{ fontSize: '14px' }}>
                           {section.location}
                         </span>
-                        <span className="text-[#605e5c] w-20" style={{ fontSize: '14px' }}>
+                        <span className="text-[#605e5c] dark:text-[#d0d0d0] w-20" style={{ fontSize: '14px' }}>
                           {section.students} Students
                         </span>
                         <button
@@ -654,7 +653,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                             // Load previously assigned students for this section
                             setSelectedStudents(sectionStudentAssignments[section.name] || []);
                           }}
-                          className="text-[#605e5c] hover:text-[#323130] p-1"
+                          className="text-[#605e5c] dark:text-[#d0d0d0] hover:text-[#323130] dark:hover:text-[#ffffff] p-1"
                           aria-label="Edit section"
                         >
                           <Pencil className="w-4 h-4" />
@@ -666,8 +665,8 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
 
                 {/* Add Section */}
                 {isAddingPermissionSection ? (
-                  <div className="flex items-center gap-3 p-3 bg-white border border-[#7719AA] rounded mb-4">
-                    <img src={tabIcon} alt="" className="w-3 h-6 flex-shrink-0" style={{ objectFit: 'contain' }} />
+                  <div className="flex items-center gap-3 p-3 bg-white dark:bg-[#1e1e1e] border border-[#7719AA] rounded mb-4">
+                    <SectionTabIcon className="w-3 h-6 flex-shrink-0 text-[#323130] dark:text-white" />
                     <input
                       type="text"
                       value={newPermissionSectionName}
@@ -715,7 +714,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
               </div>
 
               {/* Dialog Footer */}
-              <div className="px-6 py-4 border-t border-[#edebe9] flex justify-end">
+              <div className="px-6 py-4 border-t border-[#edebe9] dark:border-[#3d3d3d] flex justify-end">
                 <Button
                   onClick={() => setShowPermissionsDialog(false)}
                   className="text-white px-6 rounded"
@@ -728,7 +727,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
           ) : (
             <>
               {/* Dialog Header - Student Selection */}
-              <div className="px-6 pt-6 pb-4 border-b border-[#edebe9]">
+              <div className="px-6 pt-6 pb-4 border-b border-[#edebe9] dark:border-[#3d3d3d]">
                 <button
                   onClick={() => {
                     setSelectedSection(null);
@@ -741,7 +740,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                   <ChevronLeft className="w-5 h-5" />
                   <span>Back</span>
                 </button>
-                <h1 className="text-[#323130] m-0" style={{ fontSize: '20px' }} aria-hidden="true">
+                <h1 className="text-[#323130] dark:text-[#ffffff] m-0" style={{ fontSize: '20px' }} aria-hidden="true">
                   Choose {studentLabelPlural} who can view and edit this section.
                 </h1>
               </div>
@@ -749,7 +748,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
               {/* Dialog Body - Student Selection */}
               <div className="px-6 py-4 min-h-[400px]">
                 {/* Student Checkboxes */}
-                <div className="space-y-3 mb-6 border-b border-[#edebe9] pb-4">
+                <div className="space-y-3 mb-6 border-b border-[#edebe9] dark:border-[#3d3d3d] pb-4">
                   {students.map((student) => (
                     <div key={getStudentId(student)} className="flex items-center gap-3">
                       <Checkbox
@@ -762,12 +761,12 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                             setSelectedStudents(selectedStudents.filter(s => s !== getStudentName(student)));
                           }
                         }}
-                        className="border-[#8a8886] flex-shrink-0"
+                        className="border-[#8a8886] dark:border-[#5d5d5d] flex-shrink-0"
                         style={{ width: '20px', height: '20px', '--accent-check': accent } as any}
                       />
                       <label
                         htmlFor={`student-${getStudentId(student)}`}
-                        className="text-[#323130] cursor-pointer flex-1"
+                        className="text-[#323130] dark:text-[#ffffff] cursor-pointer flex-1"
                         style={{ fontSize: '14px' }}
                       >
                         {getStudentName(student)}
@@ -788,12 +787,12 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                         setSelectedStudents([]);
                       }
                     }}
-                    className="border-[#8a8886] flex-shrink-0"
+                    className="border-[#8a8886] dark:border-[#5d5d5d] flex-shrink-0"
                     style={{ width: '20px', height: '20px' }}
                   />
                   <label
                     htmlFor="read-only-access"
-                    className="text-[#323130] cursor-pointer flex-1"
+                    className="text-[#323130] dark:text-[#ffffff] cursor-pointer flex-1"
                     style={{ fontSize: '14px' }}
                   >
                     Give read-only access to all {studentLabelPlural} in the {isStaff ? 'team' : 'class'}
@@ -802,7 +801,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
               </div>
 
               {/* Dialog Footer - Student Selection */}
-              <div className="px-6 py-4 border-t border-[#edebe9] flex justify-end gap-3">
+              <div className="px-6 py-4 border-t border-[#edebe9] dark:border-[#3d3d3d] flex justify-end gap-3">
                 <Button
                   onClick={() => {
                     if (selectedSection) {
@@ -849,12 +848,12 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
 
       {/* Add Section Dialog */}
       <Dialog open={showAddSectionDialog} onOpenChange={setShowAddSectionDialog}>
-        <DialogContent className="max-w-2xl bg-white p-0 gap-0 rounded-sm border-0 shadow-2xl">
+        <DialogContent className="max-w-2xl bg-white dark:bg-[#1e1e1e] p-0 gap-0 rounded-sm border-0 shadow-2xl">
           <DialogTitle className="sr-only">Name the new section</DialogTitle>
           <DialogDescription className="sr-only">Create a new section in the Collaboration Space</DialogDescription>
           
           {/* Dialog Header */}
-          <div className="px-6 pt-6 pb-4 border-b border-[#edebe9]">
+          <div className="px-6 pt-6 pb-4 border-b border-[#edebe9] dark:border-[#3d3d3d]">
             <button
               onClick={() => {
                 setShowAddSectionDialog(false);
@@ -869,7 +868,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
               <ChevronLeft className="w-5 h-5" />
               <span>Back</span>
             </button>
-            <h1 className="text-[#323130] m-0" style={{ fontSize: '20px' }} aria-hidden="true">
+            <h1 className="text-[#323130] dark:text-[#ffffff] m-0" style={{ fontSize: '20px' }} aria-hidden="true">
               Name the new section
             </h1>
           </div>
@@ -889,7 +888,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                     }
                   }}
                   placeholder="Name the new section"
-                  className="w-full px-3 py-2 border border-[#8a8886] rounded text-[#323130] outline-none"
+                  className="w-full px-3 py-2 border border-[#8a8886] dark:border-[#5d5d5d] rounded text-[#323130] dark:text-[#ffffff] outline-none"
                   style={{ fontSize: '14px' }}
                 />
               </div>
@@ -904,24 +903,24 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
               )}
             </div>
             
-            <h3 className="text-[#323130] mb-3" style={{ fontSize: '14px', fontWeight: '600' }}>
+            <h3 className="text-[#323130] dark:text-[#ffffff] mb-3" style={{ fontSize: '14px', fontWeight: '600' }}>
               Choose {studentLabelPlural} who can read and edit content
             </h3>
             
             {/* Students Display/Selection */}
             <div className="mb-4">
-              <div className="px-3 py-2 bg-[#f3f2f1] border border-[#8a8886] rounded text-[#605e5c]" style={{ fontSize: '14px' }}>
+              <div className="px-3 py-2 bg-[#f3f2f1] dark:bg-[#3d3d3d] border border-[#8a8886] dark:border-[#5d5d5d] rounded text-[#605e5c] dark:text-[#d0d0d0]" style={{ fontSize: '14px' }}>
                 {newSectionStudents.length === 0 ? `No ${studentLabelPlural}` : `${newSectionStudents.length} ${studentLabel}${newSectionStudents.length !== 1 ? 's' : ''} selected`}
               </div>
             </div>
 
             {/* Create In Dropdown */}
             <div className="mb-4">
-              <label className="block text-[#323130] mb-2" style={{ fontSize: '14px' }}>
+              <label className="block text-[#323130] dark:text-[#ffffff] mb-2" style={{ fontSize: '14px' }}>
                 Create in
               </label>
               <select
-                className="w-full px-3 py-2 border border-[#8a8886] rounded text-[#323130] outline-none"
+                className="w-full px-3 py-2 border border-[#8a8886] dark:border-[#5d5d5d] rounded text-[#323130] dark:text-[#ffffff] outline-none"
                 style={{ fontSize: '14px' }}
                 defaultValue="_Collaboration Space"
               >
@@ -935,12 +934,12 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                 id="new-section-read-only"
                 checked={newSectionReadOnly}
                 onCheckedChange={(checked) => setNewSectionReadOnly(checked as boolean)}
-                className="border-[#8a8886] flex-shrink-0 mt-0.5"
+                className="border-[#8a8886] dark:border-[#5d5d5d] flex-shrink-0 mt-0.5"
                 style={{ width: '16px', height: '16px' }}
               />
               <label
                 htmlFor="new-section-read-only"
-                className="text-[#323130] cursor-pointer flex-1"
+                className="text-[#323130] dark:text-[#ffffff] cursor-pointer flex-1"
                 style={{ fontSize: '14px' }}
               >
                 Give read-only access to all {studentLabelPlural} in the {isStaff ? 'team' : 'class'}, even if they're not in the group
@@ -949,7 +948,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
           </div>
 
           {/* Dialog Footer */}
-          <div className="px-6 py-4 border-t border-[#edebe9] flex justify-end gap-3">
+          <div className="px-6 py-4 border-t border-[#edebe9] dark:border-[#3d3d3d] flex justify-end gap-3">
             <Button
               onClick={() => {
                 if (!newPermissionSectionName.trim()) {
@@ -1012,14 +1011,14 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
           setLinkCopied(false);
         }
       }}>
-        <DialogContent className="max-w-[968px] sm:max-w-[968px] bg-white p-0 gap-0 rounded-lg border-0 shadow-2xl overflow-hidden" style={{ maxHeight: '600px' }}>
+        <DialogContent className="max-w-[968px] sm:max-w-[968px] bg-white dark:bg-[#1e1e1e] p-0 gap-0 rounded-lg border-0 shadow-2xl overflow-hidden" style={{ maxHeight: '600px' }}>
           <DialogTitle className="sr-only">Parent Notebook Links</DialogTitle>
           <DialogDescription className="sr-only">
             Create and manage read-only guest links for parents and guardians.
           </DialogDescription>
 
           {/* Dialog Header */}
-          <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-[#edebe9]">
+          <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-[#edebe9] dark:border-[#3d3d3d]">
             <h2 className="text-[#242424] m-0" style={{ fontSize: '20px', fontWeight: '600', lineHeight: '28px', fontFamily: "'Segoe UI', system-ui, sans-serif" }}>
               {parentLinksTitle}
             </h2>
@@ -1028,7 +1027,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
           {/* Dialog Body - Two-column layout */}
           <div className="flex min-h-[360px]">
             {/* Left Nav */}
-            <nav className="w-[180px] border-r border-[#edebe9] bg-[#fafafa] flex-shrink-0 pt-2">
+            <nav className="w-[180px] border-r border-[#edebe9] dark:border-[#3d3d3d] bg-[#fafafa] flex-shrink-0 pt-2">
               <button
                 onClick={() => setParentLinksTab('content-library')}
                 className={`w-full text-left px-5 py-2.5 transition-colors relative ${
@@ -1097,7 +1096,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                           className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
                             parentLinkType === 'individual'
                               ? ''
-                              : 'border-[#8a8886] group-hover:border-[#605e5c]'
+                              : 'border-[#8a8886] dark:border-[#5d5d5d] group-hover:border-[#605e5c]'
                           }`}
                           style={parentLinkType === 'individual' ? { borderColor: accent } : undefined}
                         >
@@ -1122,7 +1121,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                         <select
                           value={selectedStudentForLink}
                           onChange={(e) => setSelectedStudentForLink(e.target.value)}
-                          className="w-full max-w-[260px] px-3 py-2 border border-[#8a8886] rounded-md text-[#242424] outline-none focus:border-[#7719AA] bg-white appearance-none"
+                          className="w-full max-w-[260px] px-3 py-2 border border-[#8a8886] dark:border-[#5d5d5d] rounded-md text-[#242424] outline-none focus:border-[#7719AA] bg-white dark:bg-[#1e1e1e] appearance-none"
                           style={{
                             fontSize: '14px',
                             fontFamily: "'Segoe UI', system-ui, sans-serif",
@@ -1144,7 +1143,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                   </div>
 
                   {/* Divider */}
-                  <div className="border-t border-[#edebe9] my-4" />
+                  <div className="border-t border-[#edebe9] dark:border-[#3d3d3d] my-4" />
 
                   {/* All Students Radio */}
                   <div>
@@ -1154,7 +1153,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
                           className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
                             parentLinkType === 'all'
                               ? ''
-                              : 'border-[#8a8886] group-hover:border-[#605e5c]'
+                              : 'border-[#8a8886] dark:border-[#5d5d5d] group-hover:border-[#605e5c]'
                           }`}
                           style={parentLinkType === 'all' ? { borderColor: accent } : undefined}
                         >
@@ -1179,7 +1178,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
           </div>
 
           {/* Dialog Footer */}
-          <div className="px-6 py-4 border-t border-[#edebe9] flex justify-end gap-3">
+          <div className="px-6 py-4 border-t border-[#edebe9] dark:border-[#3d3d3d] flex justify-end gap-3">
             <Button
               onClick={() => {
                 if (parentLinksTab === 'student-notebooks') {
@@ -1204,7 +1203,7 @@ export const NotebookDetailsPage = memo(function NotebookDetailsPage({
             <Button
               onClick={() => setShowParentLinksDialog(false)}
               variant="outline"
-              className="border-[#d1d1d1] text-[#424242] hover:bg-[#f5f5f5] px-5 rounded-md"
+              className="border-[#d1d1d1] dark:border-[#5d5d5d] text-[#424242] hover:bg-[#f5f5f5] dark:hover:bg-[#1e1e1e] px-5 rounded-md"
               style={{ fontSize: '14px', fontFamily: "'Segoe UI', system-ui, sans-serif" }}
             >
               Close

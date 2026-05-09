@@ -243,7 +243,7 @@ export default function App() {
 
   if (showMarketing) {
     return (
-      <DarkModeProvider>
+      <DarkModeProvider disabled>
         <Fluent2Provider enabled={featureFlags.fluent2_components}>
           <MarketingPage
             onSignIn={handleSignIn}

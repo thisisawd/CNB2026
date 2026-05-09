@@ -1,9 +1,8 @@
 import { ChevronLeft, BookOpen } from 'lucide-react';
 import { memo, useState } from 'react';
 import { Button } from '../ui/button';
+import { SectionTabIcon } from '../shared/SectionTabIcon';
 import notebookIcon from 'figma:asset/80fa9b5015278767c625ee32c5e7b1597a02f0ca.png';
-import tabIcon from 'figma:asset/cce56037713ebe0db120d7c4c1dfe46163a14419.png';
-
 interface PreviewStepProps {
   data: any;
   onDataChange: (data: any) => void;
@@ -46,14 +45,14 @@ export const PreviewStep = memo(function PreviewStep({ data, onNext, onBack, not
       <div className="mb-8 mt-[68px]">
         <button 
           onClick={onBack}
-          className="flex items-center gap-1 text-[#7719AA] hover:text-[#6b15a0] mb-4"
+          className="flex items-center gap-1 text-[#7719AA] dark:text-[#b59dd8] hover:text-[#6b15a0] dark:hover:text-[#c9b3e0] mb-4"
           style={{ fontSize: '14px' }}
         >
           <ChevronLeft className="w-5 h-5" />
           <span>Back</span>
         </button>
         
-        <h1 className="text-[#323130] mb-8" style={{ fontSize: '24px' }}>
+        <h1 className="text-[#323130] dark:text-[#ffffff] mb-8" style={{ fontSize: '24px' }}>
           Did we get this right? Please confirm with the visual preview
         </h1>
         
@@ -63,8 +62,8 @@ export const PreviewStep = memo(function PreviewStep({ data, onNext, onBack, not
             onClick={() => setActiveTab('teacher')}
             className={`px-4 py-2 border border-b-0 rounded-t transition-colors ${
               activeTab === 'teacher'
-                ? 'bg-white border-[#d1d1d1] text-[#323130] relative z-10'
-                : 'bg-[#f3f2f1] border-transparent text-[#605e5c] hover:bg-[#edebe9]'
+                ? 'bg-white dark:bg-[#2b2b2b] border-[#d1d1d1] dark:border-[#5d5d5d] text-[#323130] dark:text-[#ffffff] relative z-10'
+                : 'bg-[#f3f2f1] dark:bg-[#1e1e1e] border-transparent text-[#605e5c] dark:text-[#a0a0a0] hover:bg-[#edebe9] dark:hover:bg-[#3d3d3d]'
             }`}
           >
             {isStaff ? "Staff leader's notebook" : "Teacher's notebook"}
@@ -73,8 +72,8 @@ export const PreviewStep = memo(function PreviewStep({ data, onNext, onBack, not
             onClick={() => setActiveTab('student')}
             className={`px-4 py-2 border border-b-0 rounded-t transition-colors ${
               activeTab === 'student'
-                ? 'bg-white border-[#d1d1d1] text-[#7719AA] relative z-10'
-                : 'bg-[#f3f2f1] border-transparent text-[#605e5c] hover:bg-[#edebe9]'
+                ? 'bg-white dark:bg-[#2b2b2b] border-[#d1d1d1] dark:border-[#5d5d5d] text-[#7719AA] dark:text-[#b59dd8] relative z-10'
+                : 'bg-[#f3f2f1] dark:bg-[#1e1e1e] border-transparent text-[#605e5c] dark:text-[#a0a0a0] hover:bg-[#edebe9] dark:hover:bg-[#3d3d3d]'
             }`}
           >
             {isStaff ? "Staff member's notebook" : "Student's notebook"}
@@ -82,44 +81,44 @@ export const PreviewStep = memo(function PreviewStep({ data, onNext, onBack, not
         </div>
 
         {/* Notebook preview */}
-        <div className="border border-[#d1d1d1] rounded bg-white overflow-hidden" style={{ minHeight: '500px' }}>
+        <div className="border border-[#d1d1d1] dark:border-[#5d5d5d] rounded bg-white dark:bg-[#2b2b2b] overflow-hidden" style={{ minHeight: '500px' }}>
           {/* Purple header bar */}
           <div className="h-3 bg-[#7719AA]"></div>
           
           {/* Notebook name */}
-          <div className="px-6 py-4 border-b border-[#edebe9]">
+          <div className="px-6 py-4 border-b border-[#edebe9] dark:border-[#3d3d3d]">
             <div className="flex items-center gap-2">
               <img src={notebookIcon} alt="" className="w-6 h-6" />
-              <span className="text-[#323130]">{notebookName}</span>
+              <span className="text-[#323130] dark:text-[#ffffff]">{notebookName}</span>
             </div>
           </div>
 
           <div className="flex" style={{ height: '450px' }}>
             {/* Left sidebar */}
-            <div className="w-64 border-r border-[#edebe9] p-4 bg-[#faf9f8]">
+            <div className="w-64 border-r border-[#edebe9] dark:border-[#3d3d3d] p-4 bg-[#faf9f8] dark:bg-[#252525]">
               <div className="space-y-1">
                 {/* Welcome */}
-                <div className="flex items-center gap-2 px-2 py-1.5 text-[#323130] text-sm">
-                  <img src={tabIcon} alt="" className="w-2 h-5" style={{ filter: 'hue-rotate(200deg) brightness(0.8) saturate(1.5)' }} />
+                <div className="flex items-center gap-2 px-2 py-1.5 text-[#323130] dark:text-[#d0d0d0] text-sm">
+                  <SectionTabIcon className="w-2 h-5" color="#7719AA" />
                   <span>Welcome</span>
                 </div>
 
                 {/* Collaboration Space */}
-                <div className="flex items-center gap-2 px-2 py-1.5 text-[#323130] text-sm">
-                  <img src={tabIcon} alt="" className="w-2 h-5" style={{ filter: 'hue-rotate(200deg) brightness(0.8) saturate(1.5)' }} />
+                <div className="flex items-center gap-2 px-2 py-1.5 text-[#323130] dark:text-[#d0d0d0] text-sm">
+                  <SectionTabIcon className="w-2 h-5" color="#7719AA" />
                   <span>_Collaboration Space</span>
                 </div>
 
                 {/* Content Library */}
-                <div className="flex items-center gap-2 px-2 py-1.5 text-[#323130] text-sm">
-                  <img src={tabIcon} alt="" className="w-2 h-5" style={{ filter: 'hue-rotate(200deg) brightness(0.8) saturate(1.5)' }} />
+                <div className="flex items-center gap-2 px-2 py-1.5 text-[#323130] dark:text-[#d0d0d0] text-sm">
+                  <SectionTabIcon className="w-2 h-5" color="#7719AA" />
                   <span>_Content Library</span>
                 </div>
 
                 {/* Teacher Only - only show in teacher view */}
                 {activeTab === 'teacher' && (
-                  <div className="flex items-center gap-2 px-2 py-1.5 text-[#323130] text-sm">
-                    <img src={tabIcon} alt="" className="w-2 h-5" style={{ filter: 'hue-rotate(200deg) brightness(0.8) saturate(1.5)' }} />
+                  <div className="flex items-center gap-2 px-2 py-1.5 text-[#323130] dark:text-[#d0d0d0] text-sm">
+                    <SectionTabIcon className="w-2 h-5" color="#7719AA" />
                     <span>{isStaff ? '_Leader Only' : '_Teacher Only'}</span>
                   </div>
                 )}
@@ -128,8 +127,8 @@ export const PreviewStep = memo(function PreviewStep({ data, onNext, onBack, not
                 {activeTab === 'teacher' && students.length > 0 && (
                   <div className="mt-1 space-y-1">
                     {students.map((student: any, index: number) => (
-                      <div key={index} className="flex items-center gap-2 px-2 py-1.5 text-[#323130] text-sm">
-                        <img src={tabIcon} alt="" className="w-2 h-5" style={{ filter: 'hue-rotate(200deg) brightness(0.8) saturate(1.5)' }} />
+                      <div key={index} className="flex items-center gap-2 px-2 py-1.5 text-[#323130] dark:text-[#d0d0d0] text-sm">
+                        <SectionTabIcon className="w-2 h-5" color="#7719AA" />
                         <span>{getStudentName(student)}</span>
                       </div>
                     ))}
@@ -139,8 +138,8 @@ export const PreviewStep = memo(function PreviewStep({ data, onNext, onBack, not
                 {/* Student's section group - only show in student view */}
                 {activeTab === 'student' && (
                   <div className="mt-2">
-                    <div className="flex items-center gap-2 px-2 py-1.5 text-[#323130] text-sm">
-                      <img src={tabIcon} alt="" className="w-2 h-5" style={{ filter: 'hue-rotate(200deg) brightness(0.8) saturate(1.5)' }} />
+                    <div className="flex items-center gap-2 px-2 py-1.5 text-[#323130] dark:text-[#d0d0d0] text-sm">
+                      <SectionTabIcon className="w-2 h-5" color="#7719AA" />
                       <span>{isStaff ? "Staff member's section group" : "Student's section group"}</span>
                     </div>
 
@@ -151,13 +150,8 @@ export const PreviewStep = memo(function PreviewStep({ data, onNext, onBack, not
                         const color = SECTION_COLORS[colorIndex];
                         
                         return (
-                          <div key={index} className="flex items-center gap-2 px-2 py-1.5 text-[#605e5c] text-sm">
-                            <img 
-                              src={tabIcon} 
-                              alt="" 
-                              className="w-2 h-5" 
-                              style={{ filter: `hue-rotate(${colorIndex * 45}deg) brightness(0.9) saturate(1.2)` }} 
-                            />
+                          <div key={index} className="flex items-center gap-2 px-2 py-1.5 text-[#605e5c] dark:text-[#a0a0a0] text-sm">
+                            <SectionTabIcon className="w-2 h-5" color={color} />
                             <span>{section}</span>
                           </div>
                         );
@@ -169,17 +163,17 @@ export const PreviewStep = memo(function PreviewStep({ data, onNext, onBack, not
             </div>
 
             {/* Main content area */}
-            <div className="flex-1 bg-white">
+            <div className="flex-1 bg-white dark:bg-[#2b2b2b]">
               {/* Content placeholder */}
               <div className="px-6 py-6 space-y-4">
-                <div className="h-8 bg-[#f3f2f1] rounded w-3/4"></div>
-                <div className="h-4 bg-[#faf9f8] rounded w-full"></div>
-                <div className="h-4 bg-[#faf9f8] rounded w-5/6"></div>
+                <div className="h-8 bg-[#f3f2f1] dark:bg-[#3d3d3d] rounded w-3/4"></div>
+                <div className="h-4 bg-[#faf9f8] dark:bg-[#333333] rounded w-full"></div>
+                <div className="h-4 bg-[#faf9f8] dark:bg-[#333333] rounded w-5/6"></div>
                 
                 <div className="mt-6 space-y-3">
-                  <div className="h-20 bg-[#f3f2f1] rounded"></div>
-                  <div className="h-20 bg-[#f3f2f1] rounded"></div>
-                  <div className="h-20 bg-[#f3f2f1] rounded"></div>
+                  <div className="h-20 bg-[#f3f2f1] dark:bg-[#3d3d3d] rounded"></div>
+                  <div className="h-20 bg-[#f3f2f1] dark:bg-[#3d3d3d] rounded"></div>
+                  <div className="h-20 bg-[#f3f2f1] dark:bg-[#3d3d3d] rounded"></div>
                 </div>
               </div>
             </div>
@@ -191,7 +185,7 @@ export const PreviewStep = memo(function PreviewStep({ data, onNext, onBack, not
         <Button
           onClick={onBack}
           variant="outline"
-          className="border-[#8a8886] text-[#323130] hover:bg-[#f3f2f1] rounded"
+          className="border-[#8a8886] text-[#323130] dark:text-[#ffffff] dark:border-[#8a8886] hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d] rounded"
         >
           Back
         </Button>

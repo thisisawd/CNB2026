@@ -5,6 +5,7 @@ import { SettingsPanel } from './SettingsPanel';
 import { HelpPanel } from './HelpPanel';
 import { FeatureFlagsPanel } from './FeatureFlagsPanel';
 import { ChevronDown } from 'lucide-react';
+import { useDarkMode } from './DarkModeContext';
 import classNotebookIcon from '../assets/CNB_SVG_FINAL.svg';
 import staffNotebookIcon from '../assets/SNB_SVG_FINAL.svg';
 import waffleIcon from 'figma:asset/21f8e9858d4b093e8eb8605fd894074baf7ddbba.png';
@@ -28,6 +29,9 @@ export const Header = memo(function Header({ featureFlags = {}, onFeatureFlagCha
   const [isHelpPanelOpen, setIsHelpPanelOpen] = useState(false);
   const [isFeatureFlagsPanelOpen, setIsFeatureFlagsPanelOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const { theme, themeId } = useDarkMode();
+  const themed = themeId !== 'default';
+  const themeBackground = theme.gradient ?? theme.color;
 
   const toggleWaffleMenu = useCallback(() => setIsWaffleMenuOpen(prev => !prev), []);
   const closeWaffleMenu = useCallback(() => setIsWaffleMenuOpen(false), []);
@@ -46,48 +50,53 @@ export const Header = memo(function Header({ featureFlags = {}, onFeatureFlagCha
   }, [closeProfileMenu, onSignOut]);
 
   return (
-    <header className="flex items-center justify-between px-4 h-12 bg-[#f5f5f5] dark:bg-[#2b2b2b] border-b border-[#edebe9] dark:border-[#3d3d3d] relative z-50">
+    <header
+      className={`flex items-center justify-between px-4 h-12 border-b border-[#edebe9] dark:border-[#3d3d3d] relative z-50 ${
+        themed ? 'text-white' : 'bg-[#f5f5f5] dark:bg-[#2b2b2b]'
+      }`}
+      style={themed ? { background: themeBackground } : undefined}
+    >
       <div className="flex items-center gap-3">
         <button 
           onClick={toggleWaffleMenu}
-          className="hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d] p-2 rounded transition-colors"
+          className={`p-2 rounded transition-colors ${themed ? 'hover:bg-white/15' : 'hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d]'}`}
         >
-          <img src={waffleIcon} alt="Apps" className="w-5 h-5 dark:invert dark:brightness-0 dark:contrast-100" />
+          <img src={waffleIcon} alt="Apps" className={`w-5 h-5 ${themed ? 'invert brightness-0 contrast-100' : 'dark:invert dark:brightness-0 dark:contrast-100'}`} />
         </button>
         
         <WaffleMenu isOpen={isWaffleMenuOpen} onClose={closeWaffleMenu} />
         
         <button 
           onClick={onLogoClick}
-          className="flex items-center gap-2 hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d] px-2 py-1 rounded transition-colors"
+          className={`flex items-center gap-2 px-2 py-1 rounded transition-colors ${themed ? 'hover:bg-white/15' : 'hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d]'}`}
         >
           <img src={notebookType === 'class' ? classNotebookIcon : staffNotebookIcon} alt="OneNote" className="w-6 h-6" />
-          <span className="text-[#323130] dark:text-[#ffffff]">{notebookType === 'class' ? 'Class Notebook' : 'Staff Notebook'}</span>
+          <span className={themed ? 'text-white' : 'text-[#323130] dark:text-[#ffffff]'}>{notebookType === 'class' ? 'Class Notebook' : 'Staff Notebook'}</span>
         </button>
       </div>
       
       <div className="flex items-center gap-1">
         <button 
           onClick={openSettingsPanel}
-          className="hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d] p-2 rounded transition-colors"
+          className={`p-2 rounded transition-colors ${themed ? 'hover:bg-white/15' : 'hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d]'}`}
         >
-          <img src={settingsIcon} alt="Settings" className="w-[18px] h-[18px] dark:invert dark:brightness-0 dark:contrast-100" />
+          <img src={settingsIcon} alt="Settings" className={`w-[18px] h-[18px] ${themed ? 'invert brightness-0 contrast-100' : 'dark:invert dark:brightness-0 dark:contrast-100'}`} />
         </button>
         <button 
           onClick={openFeatureFlagsPanel}
-          className="hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d] p-2 rounded transition-colors"
+          className={`p-2 rounded transition-colors ${themed ? 'hover:bg-white/15' : 'hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d]'}`}
         >
-          <img src={flagIcon} alt="Flags" className="w-5 h-5 dark:invert dark:brightness-0 dark:contrast-100" />
+          <img src={flagIcon} alt="Flags" className={`w-5 h-5 ${themed ? 'invert brightness-0 contrast-100' : 'dark:invert dark:brightness-0 dark:contrast-100'}`} />
         </button>
         <button 
           onClick={openHelpPanel}
-          className="hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d] p-2 rounded transition-colors"
+          className={`p-2 rounded transition-colors ${themed ? 'hover:bg-white/15' : 'hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d]'}`}
         >
-          <img src={helpIcon} alt="Help" className="w-5 h-5 dark:invert dark:brightness-0 dark:contrast-100" />
+          <img src={helpIcon} alt="Help" className={`w-5 h-5 ${themed ? 'invert brightness-0 contrast-100' : 'dark:invert dark:brightness-0 dark:contrast-100'}`} />
         </button>
         <button 
           onClick={toggleProfileMenu}
-          className="hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d] p-2 rounded transition-colors relative"
+          className={`p-2 rounded transition-colors relative ${themed ? 'hover:bg-white/15' : 'hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d]'}`}
         >
           <div className="flex items-center gap-1">
             <ImageWithFallback
@@ -95,7 +104,7 @@ export const Header = memo(function Header({ featureFlags = {}, onFeatureFlagCha
               alt="Profile"
               className="w-6 h-6"
             />
-            <ChevronDown className="w-3 h-3 text-[#323130] dark:text-[#ffffff]" />
+            <ChevronDown className={`w-3 h-3 ${themed ? 'text-white' : 'text-[#323130] dark:text-[#ffffff]'}`} />
           </div>
         </button>
         

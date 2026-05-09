@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ChevronRight } from 'lucide-react';
-import { memo, useMemo } from 'react';
-import { useDarkMode } from './DarkModeContext';
+import { memo } from 'react';
+import { useDarkMode, THEMES } from './DarkModeContext';
 
 interface SettingsPanelProps {
   isOpen: boolean;
@@ -9,21 +9,7 @@ interface SettingsPanelProps {
 }
 
 export const SettingsPanel = memo(function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
-  const { isDarkMode, toggleDarkMode } = useDarkMode();
-  
-  // Theme preview colors/patterns
-  const themes = useMemo(() => [
-    { color: '#5a5a5a', selected: true },
-    { color: '#0000ff' },
-    { gradient: 'linear-gradient(135deg, #4a90e2 0%, #67b8e3 100%)' },
-    { gradient: 'linear-gradient(135deg, #ffa07a 0%, #ff6b9d 100%)' },
-    { gradient: 'linear-gradient(135deg, #ff6b9d 0%, #ffd93d 100%)' },
-    { color: '#1e5a8e' },
-    { gradient: 'linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%)' },
-    { color: '#2c3e50' },
-    { color: '#8b4789' },
-    { gradient: 'linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%)' },
-  ], []);
+  const { isDarkMode, toggleDarkMode, themeId, setThemeId } = useDarkMode();
 
   return (
     <AnimatePresence>
@@ -83,24 +69,30 @@ export const SettingsPanel = memo(function SettingsPanel({ isOpen, onClose }: Se
               <section className="mb-6">
                 <h3 className="text-[#323130] dark:text-[#ffffff] mb-3">Themes</h3>
                 <div className="grid grid-cols-5 gap-2 mb-2">
-                  {themes.map((theme, index) => (
-                    <button
-                      key={index}
-                      className="relative w-12 h-12 rounded overflow-hidden border-2 transition-all hover:scale-105"
-                      style={{
-                        background: theme.gradient || theme.color,
-                        borderColor: theme.selected ? '#0078d4' : '#edebe9',
-                      }}
-                    >
-                      {theme.selected && (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center">
-                            <div className="w-2 h-2 bg-[#0078d4] rounded-full" />
+                  {THEMES.map((theme) => {
+                    const selected = theme.id === themeId;
+                    return (
+                      <button
+                        key={theme.id}
+                        onClick={() => setThemeId(theme.id)}
+                        aria-label={`Theme ${theme.id}`}
+                        aria-pressed={selected}
+                        className="relative w-12 h-12 rounded overflow-hidden border-2 transition-all hover:scale-105"
+                        style={{
+                          background: theme.gradient || theme.color,
+                          borderColor: selected ? '#0078d4' : '#edebe9',
+                        }}
+                      >
+                        {selected && (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-4 h-4 bg-white rounded-full flex items-center justify-center">
+                              <div className="w-2 h-2 bg-[#0078d4] rounded-full" />
+                            </div>
                           </div>
-                        </div>
-                      )}
-                    </button>
-                  ))}
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
                 <a
                   href="#"

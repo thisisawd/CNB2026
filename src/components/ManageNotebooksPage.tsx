@@ -51,34 +51,34 @@ export const ManageNotebooksPage = memo(function ManageNotebooksPage({ notebooks
   }
 
   return (
-    <div className="min-h-screen bg-[#f5f5f5] p-8">
+    <div className="min-h-screen bg-[#f5f5f5] dark:bg-[#1e1e1e] p-8">
       <div className="max-w-4xl mx-auto">
         <button 
           onClick={onBack}
-          className="flex items-center gap-2 text-[#605e5c] hover:text-[#323130] transition-all mb-8 -ml-2 px-2 py-1 rounded hover:bg-[#f3f2f1]"
+          className="flex items-center gap-2 text-[#605e5c] dark:text-[#d0d0d0] hover:text-[#323130] dark:hover:text-[#ffffff] transition-all mb-8 -ml-2 px-2 py-1 rounded hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d]"
         >
           <ChevronLeft className="w-5 h-5" />
           <span>Back</span>
         </button>
 
-        <h1 className="text-[#323130] mb-2" style={{ fontSize: '28px' }}>
+        <h1 className="text-[#323130] dark:text-[#ffffff] mb-2" style={{ fontSize: '28px' }}>
           Select a notebook to manage
         </h1>
         
-        <p className="text-[#605e5c] mb-8">
+        <p className="text-[#605e5c] dark:text-[#d0d0d0] mb-8">
           (Teams) indicates that a notebook was created in Microsoft Teams
         </p>
 
         <div className="space-y-4">
           {filteredNotebooks.length === 0 ? (
-            <div className="text-[#605e5c] text-center py-12">
+            <div className="text-[#605e5c] dark:text-[#d0d0d0] text-center py-12">
               No notebooks created yet. Create your first notebook to get started.
             </div>
           ) : (
             filteredNotebooks.map((notebook, index) => (
               <div
                 key={notebook.id}
-                className="flex items-center gap-3 p-4 bg-white border border-[#edebe9] rounded hover:border-[#8a8886] hover:shadow-sm transition-all cursor-pointer"
+                className="flex items-center gap-3 p-4 bg-white dark:bg-[#2b2b2b] border border-[#edebe9] dark:border-[#3d3d3d] rounded hover:border-[#8a8886] dark:hover:border-[#5d5d5d] hover:shadow-sm transition-all cursor-pointer"
                 onClick={() => setSelectedNotebook(notebook)}
               >
                 <NotebookIcon 
@@ -86,9 +86,9 @@ export const ManageNotebooksPage = memo(function ManageNotebooksPage({ notebooks
                   className="w-6 h-6 flex-shrink-0" 
                 />
                 <div className="flex-1">
-                  <span className="text-[#323130]">{notebook.name}</span>
+                  <span className="text-[#323130] dark:text-[#ffffff]">{notebook.name}</span>
                   {notebook.isTeams && (
-                    <span className="text-[#605e5c] ml-2">(Teams)</span>
+                    <span className="text-[#605e5c] dark:text-[#a0a0a0] ml-2">(Teams)</span>
                   )}
                 </div>
               </div>
