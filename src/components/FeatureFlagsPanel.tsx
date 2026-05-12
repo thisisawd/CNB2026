@@ -44,27 +44,27 @@ export const FeatureFlagsPanel = memo(function FeatureFlagsPanel({ isOpen, onClo
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'tween', duration: 0.3, ease: 'easeInOut' }}
-            className="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 overflow-y-auto"
+            className="fixed top-0 right-0 h-full w-80 bg-white dark:bg-[#2b2b2b] shadow-2xl dark:shadow-[0_4px_16px_rgba(0,0,0,0.6)] z-50 overflow-y-auto"
           >
-            <div className="flex items-center justify-between px-4 py-3 border-b border-[#edebe9]">
-              <h2 className="text-[#323130]">Feature flags</h2>
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[#edebe9] dark:border-[#3d3d3d]">
+              <h2 className="text-[#323130] dark:text-[#ffffff]">Feature flags</h2>
               <button
                 onClick={onClose}
-                className="hover:bg-[#f3f2f1] p-1.5 rounded transition-colors"
+                className="hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d] p-1.5 rounded transition-colors"
               >
-                <X className="text-[#605e5c]" />
+                <X className="text-[#605e5c] dark:text-[#d0d0d0]" />
               </button>
             </div>
             
             <div className="flex-1 overflow-y-auto p-4">
               <div className="space-y-5">
                 {flagEntries.length === 0 ? (
-                  <p className="text-[#605e5c] text-sm">No feature flags defined yet.</p>
+                  <p className="text-[#605e5c] dark:text-[#d0d0d0] text-sm">No feature flags defined yet.</p>
                 ) : (
                   flagEntries.map(([key, value]) => (
                     <div key={key} className="space-y-1">
                       <div className="flex items-center justify-between">
-                        <Label htmlFor={key} className="text-[#323130] cursor-pointer">
+                        <Label htmlFor={key} className="text-[#323130] dark:text-[#ffffff] cursor-pointer">
                           {formatFlagName(key)}
                         </Label>
                         <Switch
@@ -74,7 +74,7 @@ export const FeatureFlagsPanel = memo(function FeatureFlagsPanel({ isOpen, onClo
                         />
                       </div>
                       {FLAG_DESCRIPTIONS[key] && (
-                        <p className="text-[11px] text-[#605e5c] leading-tight pr-12">
+                        <p className="text-[11px] text-[#605e5c] dark:text-[#a0a0a0] leading-tight pr-12">
                           {FLAG_DESCRIPTIONS[key]}
                         </p>
                       )}
@@ -85,18 +85,18 @@ export const FeatureFlagsPanel = memo(function FeatureFlagsPanel({ isOpen, onClo
 
               {/* Fluent 2 Comparison Link */}
               {onFluentComparison && (
-                <div className="mt-6 pt-4 border-t border-[#edebe9]">
+                <div className="mt-6 pt-4 border-t border-[#edebe9] dark:border-[#3d3d3d]">
                   <button
                     onClick={() => {
                       onFluentComparison();
                       onClose();
                     }}
-                    className="flex items-center gap-2 w-full px-3 py-2.5 text-[13px] text-[#0078d4] bg-[#f0f6ff] border border-[#d0e4ff] rounded-md hover:bg-[#e1efff] transition-colors"
+                    className="flex items-center gap-2 w-full px-3 py-2.5 text-[13px] text-[#0078d4] dark:text-[#4fa3e3] bg-[#f0f6ff] dark:bg-[#1f3a52] border border-[#d0e4ff] dark:border-[#2d5a82] rounded-md hover:bg-[#e1efff] dark:hover:bg-[#2a4d6b] transition-colors"
                   >
                     <Layers className="w-4 h-4 flex-shrink-0" />
                     <div className="text-left">
                       <div>View Fluent 2 Comparison</div>
-                      <div className="text-[10px] text-[#605e5c] mt-0.5">Side-by-side current vs. Fluent 2 components</div>
+                      <div className="text-[10px] text-[#605e5c] dark:text-[#a0a0a0] mt-0.5">Side-by-side current vs. Fluent 2 components</div>
                     </div>
                   </button>
                 </div>

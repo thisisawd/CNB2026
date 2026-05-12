@@ -40,6 +40,8 @@ interface MarketingPageProps {
   onAnimatedAssetsChange?: (value: boolean) => void;
   useAnimatedAssetsAlt?: boolean;
   onAnimatedAssetsAltChange?: (value: boolean) => void;
+  enableBlade0?: boolean;
+  onEnableBlade0Change?: (value: boolean) => void;
 }
 
 // Custom hook for fade-in animations
@@ -77,7 +79,7 @@ const CLASS_ACCENT_HOVER = '#6b15a0';
 const STAFF_ACCENT = '#008272';
 const STAFF_ACCENT_HOVER = '#006b5e';
 
-export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookTypeChange, featureFlags = {}, onFeatureFlagChange, onFluentComparison, selectedHero = 'hero1', onSelectedHeroChange, selectedBlade = 'none', onSelectedBladeChange, useAnimatedAssets = false, onAnimatedAssetsChange, useAnimatedAssetsAlt = false, onAnimatedAssetsAltChange }: MarketingPageProps) {
+export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookTypeChange, featureFlags = {}, onFeatureFlagChange, onFluentComparison, selectedHero = 'hero1', onSelectedHeroChange, selectedBlade = 'none', onSelectedBladeChange, useAnimatedAssets = false, onAnimatedAssetsChange, useAnimatedAssetsAlt = false, onAnimatedAssetsAltChange, enableBlade0 = false, onEnableBlade0Change }: MarketingPageProps) {
   const { enabled: fluent2Enabled } = useFluent2();
   const isStaff = notebookType === 'staff';
   const accent = CLASS_ACCENT;
@@ -314,7 +316,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
                 organizeAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
             >
-              <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] mb-4 md:mb-6 leading-tight">
+              <h2 className="font-['Segoe_UI',sans-serif] font-semibold text-[32px] md:text-[46px] text-[#505050] mb-4 md:mb-6 leading-tight">
                 Collaborate in one place
               </h2>
               <p className="font-['Segoe_UI:Light',sans-serif] text-[20px] text-[#505050] mb-6 leading-relaxed">
@@ -361,7 +363,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
               createAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}
           >
-            <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] mb-4 md:mb-6 leading-tight">
+            <h2 className="font-['Segoe_UI',sans-serif] font-semibold text-[32px] md:text-[46px] text-[#505050] mb-4 md:mb-6 leading-tight">
               Share information with everyone
             </h2>
             <p className="font-['Segoe_UI',sans-serif] text-[15px] text-[#505050] mb-6 leading-relaxed">
@@ -418,7 +420,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
                 collaborateAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
             >
-              <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] mb-4 md:mb-6 leading-tight">
+              <h2 className="font-['Segoe_UI',sans-serif] font-semibold text-[32px] md:text-[46px] text-[#505050] mb-4 md:mb-6 leading-tight">
                 Develop yourself and your work
               </h2>
               <p className="font-['Segoe_UI',sans-serif] text-[15px] text-[#505050] mb-6 leading-relaxed">
@@ -464,7 +466,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
             getStartedAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >
-          <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] mb-8 md:mb-12 leading-tight">
+          <h2 className="font-['Segoe_UI',sans-serif] font-semibold text-[32px] md:text-[46px] text-[#505050] mb-8 md:mb-12 leading-tight">
             Get Started Now
           </h2>
           <div className="grid md:grid-cols-2 gap-16 items-start">
@@ -614,6 +616,31 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
         </div>
       </section>
 
+      {/* Blade 0: AI-powered learning (toggled via theme dropdown) */}
+      {enableBlade0 && (
+        <section className="max-w-7xl mx-auto px-6 py-20">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            <div className="text-center md:text-left">
+              <h2 className="font-['Segoe_UI',sans-serif] font-semibold text-[32px] md:text-[46px] text-[#505050] mb-4 md:mb-6 leading-tight">
+                Bring AI-powered learning into your notebook
+              </h2>
+              <p className="font-['Segoe_UI',sans-serif] text-[15px] text-[#505050] mb-6 leading-relaxed">
+                Add intelligent learning activities directly into your OneNote Class Notebook.
+              </p>
+              <p className="font-['Segoe_UI',sans-serif] text-[15px] text-[#505050] mb-6 leading-relaxed">
+                Easily generate lesson plans, flash cards, and structured learning materials right where you teach—no extra tools or setup required.
+              </p>
+              <p className="font-['Segoe_UI',sans-serif] text-[15px] text-[#505050] mb-6 leading-relaxed">
+                Create engaging activities in seconds, then customize and adapt them to fit your class.
+              </p>
+              <p className="font-['Segoe_UI',sans-serif] text-[15px] text-[#505050] mb-6 leading-relaxed">
+                Everything stays in one place, ready to share, assign, and evolve with your students.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Organize Your Course Content Section */}
       <section
         className={`mobile-blade-fade py-20 ${(selectedBlade !== 'none' && selectedBlade !== 'everyOther' && bladeImages[selectedBlade]) || selectedBlade === 'everyOther' ? 'bg-cover bg-center bg-no-repeat' : 'bg-[#f2f2f2]'}`}
@@ -628,7 +655,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
                 organizeAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
             >
-              <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] mb-4 md:mb-6 leading-tight">
+              <h2 className="font-['Segoe_UI',sans-serif] font-semibold text-[32px] md:text-[46px] text-[#505050] mb-4 md:mb-6 leading-tight">
                 Organize your course content
               </h2>
               <p className="font-['Segoe_UI:Light',sans-serif] text-[20px] text-[#505050] mb-6 leading-relaxed">
@@ -683,7 +710,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
               createAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
             }`}
           >
-            <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] mb-4 md:mb-6 leading-tight">
+            <h2 style={{ fontWeight: 600 }} className="font-['Segoe_UI',sans-serif] font-semibold text-[32px] md:text-[46px] text-[#505050] mb-4 md:mb-6 leading-tight">
               Create & deliver interactive lessons
             </h2>
             <p className="font-['Segoe_UI',sans-serif] text-[15px] text-[#505050] mb-6 leading-relaxed">
@@ -746,7 +773,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
                 collaborateAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
             >
-              <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] mb-4 md:mb-6 leading-tight">
+              <h2 className="font-['Segoe_UI',sans-serif] font-semibold text-[32px] md:text-[46px] text-[#505050] mb-4 md:mb-6 leading-tight">
                 Collaborate and provide feedback
               </h2>
               <p className="font-['Segoe_UI',sans-serif] text-[15px] text-[#505050] mb-6 leading-relaxed">
@@ -792,7 +819,7 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
             getStartedAnim.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}
         >
-          <h2 className="font-['Segoe_UI',sans-serif] font-semibold md:font-light text-[32px] md:text-[46px] text-[#505050] mb-8 md:mb-12 leading-tight">
+          <h2 className="font-['Segoe_UI',sans-serif] font-semibold text-[32px] md:text-[46px] text-[#505050] mb-8 md:mb-12 leading-tight">
             Get Started Now
           </h2>
           <div className="grid md:grid-cols-2 gap-16 items-start">
@@ -924,6 +951,8 @@ export function MarketingPage({ onSignIn, notebookType = 'class', onNotebookType
           onAnimatedAssetsChange={onAnimatedAssetsChange}
           useAnimatedAssetsAlt={useAnimatedAssetsAlt}
           onAnimatedAssetsAltChange={onAnimatedAssetsAltChange}
+          enableBlade0={enableBlade0}
+          onEnableBlade0Change={onEnableBlade0Change}
         />
       </div>
 

@@ -71,9 +71,19 @@ export default function App() {
     removedStudents: [] as Array<{ name: string; email: string; photo?: string }>,
   });
   const [selectedHero, setSelectedHero] = useState('animatedHero1');
-  const [selectedBlade, setSelectedBlade] = useState('everyOther');
+  const [classBlade, setClassBlade] = useState('everyOther');
+  const [staffBlade, setStaffBlade] = useState('none');
+  const selectedBlade = notebookType === 'staff' ? staffBlade : classBlade;
+  const setSelectedBlade = (blade: string) => {
+    if (notebookType === 'staff') {
+      setStaffBlade(blade);
+    } else {
+      setClassBlade(blade);
+    }
+  };
   const [useAnimatedAssets, setUseAnimatedAssets] = useState(false);
   const [useAnimatedAssetsAlt, setUseAnimatedAssetsAlt] = useState(true);
+  const [enableBlade0, setEnableBlade0] = useState(false);
   const [featureFlags, setFeatureFlags] = useState<Record<string, boolean>>({
     teacher_student_icon_alt1: true,
     fluent2_components: false,
@@ -260,6 +270,8 @@ export default function App() {
             onAnimatedAssetsChange={setUseAnimatedAssets}
             useAnimatedAssetsAlt={useAnimatedAssetsAlt}
             onAnimatedAssetsAltChange={setUseAnimatedAssetsAlt}
+            enableBlade0={enableBlade0}
+            onEnableBlade0Change={setEnableBlade0}
           />
           <SignInDialog
             isOpen={showSignInDialog}

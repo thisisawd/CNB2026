@@ -54,9 +54,11 @@ interface TopNavigationBarVpProps {
   onAnimatedAssetsChange?: (value: boolean) => void;
   useAnimatedAssetsAlt?: boolean;
   onAnimatedAssetsAltChange?: (value: boolean) => void;
+  enableBlade0?: boolean;
+  onEnableBlade0Change?: (value: boolean) => void;
 }
 
-export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', onNotebookTypeChange, themes = [], selectedTheme, onThemeChange, blades = [], selectedBlade, onBladeChange, useAnimatedAssets = false, onAnimatedAssetsChange, useAnimatedAssetsAlt = false, onAnimatedAssetsAltChange }: TopNavigationBarVpProps) {
+export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', onNotebookTypeChange, themes = [], selectedTheme, onThemeChange, blades = [], selectedBlade, onBladeChange, useAnimatedAssets = false, onAnimatedAssetsChange, useAnimatedAssetsAlt = false, onAnimatedAssetsAltChange, enableBlade0 = false, onEnableBlade0Change }: TopNavigationBarVpProps) {
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -178,6 +180,23 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
                           <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
                         )}
                       </button>
+                    )}
+                    {onEnableBlade0Change && (
+                      <>
+                        <div className="border-t-2 border-gray-300 my-1" />
+                        <div className="px-4 py-2 font-['Segoe_UI',sans-serif] text-[12px] uppercase tracking-wide text-gray-500">
+                          AI Enhancements and Updates
+                        </div>
+                        <button
+                          onClick={() => { onEnableBlade0Change(!enableBlade0); setIsThemeOpen(false); }}
+                          className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors ${enableBlade0 ? 'bg-gray-100' : ''}`}
+                        >
+                          <span className="font-['Segoe_UI',sans-serif] text-[14px] text-black">Enable Blade 0</span>
+                          {enableBlade0 && (
+                            <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
+                          )}
+                        </button>
+                      </>
                     )}
                   </div>
                 </>
@@ -378,6 +397,23 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
                         <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
                       )}
                     </button>
+                  )}
+                  {onEnableBlade0Change && (
+                    <>
+                      <div className="border-t-2 border-gray-300 my-1" />
+                      <div className="px-4 py-2 font-['Segoe_UI',sans-serif] text-[12px] uppercase tracking-wide text-gray-500">
+                        AI Enhancements and Updates
+                      </div>
+                      <button
+                        onClick={() => { onEnableBlade0Change(!enableBlade0); setIsThemeOpen(false); }}
+                        className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors ${enableBlade0 ? 'bg-gray-100' : ''}`}
+                      >
+                        <span className="font-['Segoe_UI',sans-serif] text-[14px] text-black">Enable Blade 0</span>
+                        {enableBlade0 && (
+                          <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
+                        )}
+                      </button>
+                    </>
                   )}
                 </div>
               </>

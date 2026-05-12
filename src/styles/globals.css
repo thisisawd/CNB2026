@@ -186,21 +186,25 @@
   .mobile-blade-fade {
     position: relative;
   }
-  .mobile-blade-fade::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.25);
-    z-index: 1;
-    pointer-events: none;
-  }
   .mobile-blade-fade > * {
     position: relative;
     z-index: 2;
   }
 
-  .dark .mobile-blade-fade::before {
-    background: rgba(0, 0, 0, 0.25);
+  /* Mobile only: 50% white overlay on blade backgrounds */
+  @media (max-width: 767px) {
+    .mobile-blade-fade::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.5);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .dark .mobile-blade-fade::before {
+      background: rgba(0, 0, 0, 0.5);
+    }
   }
 }
 
