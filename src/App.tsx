@@ -24,8 +24,6 @@ import { Footer } from './components/Footer';
 import { SignInDialog } from './components/SignInDialog';
 import { FluentComparisonPage } from './components/FluentComparisonPage';
 import { Fluent2Provider } from './components/Fluent2Context';
-import classNotebookFavicon from './assets/CNB_PNG_FINAL.png';
-import staffNotebookFavicon from './assets/SNB_PNG_FINAL.png';
 
 interface Notebook {
   id: string;
@@ -89,13 +87,8 @@ export default function App() {
     fluent2_components: false,
   });
 
-  // Set favicon and document title based on notebook type
+  // Set document title based on notebook type
   useEffect(() => {
-    const link = document.querySelector("link[rel*='icon']") as HTMLLinkElement || document.createElement('link');
-    link.type = 'image/png';
-    link.rel = 'icon';
-    link.href = notebookType === 'staff' ? staffNotebookFavicon : classNotebookFavicon;
-    document.head.appendChild(link);
     document.title = notebookType === 'staff' ? 'OneNote Staff Notebook' : 'OneNote Class Notebook';
   }, [notebookType]);
 
