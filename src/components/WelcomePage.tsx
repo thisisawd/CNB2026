@@ -4,7 +4,7 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import { CNBBackgroundGradient } from './CNBBackgroundGradient';
 import BackpackIcon from '../imports/backpack-icon';
 import createNotebookIcon from '../assets/CNB_ICON_V2.png';
-import createStaffNotebookIcon from '../assets/SNB_SVG_FINAL.svg';
+import createStaffNotebookIcon from '../assets/SNB_ICON_V2.png';
 import studentsIcon from 'figma:asset/286689605a02652f0f3caddb7bd9d873df1bee4c.png';
 import studentsIconAlt1 from 'figma:asset/ad90c25bb85d91f5b753ee4bac48ec1183080283.png';
 import teachersIcon from 'figma:asset/7f9b25071bcf91f545dddf31f7d7402a0958b02c.png';

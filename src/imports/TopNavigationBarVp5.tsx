@@ -2,7 +2,7 @@ import svgPaths from "./svg-pc5x2o8hcp";
 import { Search as SearchIcon, Menu, X, ChevronDown, Paintbrush, Check } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import classNotebookIcon from '../assets/CNB_ICON_V2.png';
-import staffNotebookIcon from '../assets/SNB_SVG_FINAL.svg';
+import staffNotebookIcon from '../assets/SNB_ICON_V2.png';
 
 function Microsoft() {
   return (

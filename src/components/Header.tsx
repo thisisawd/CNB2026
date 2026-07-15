@@ -7,7 +7,7 @@ import { FeatureFlagsPanel } from './FeatureFlagsPanel';
 import { ChevronDown } from 'lucide-react';
 import { useDarkMode } from './DarkModeContext';
 import classNotebookIcon from '../assets/CNB_ICON_V2.png';
-import staffNotebookIcon from '../assets/SNB_SVG_FINAL.svg';
+import staffNotebookIcon from '../assets/SNB_ICON_V2.png';
 import waffleIcon from 'figma:asset/21f8e9858d4b093e8eb8605fd894074baf7ddbba.png';
 import profileIcon from 'figma:asset/1fccae1a9f64af9240f71c3e987e8891da190b73.png';
 import settingsIcon from 'figma:asset/8125922ffd8cd53e9008e32e3ceceee12ba7db27.png';
