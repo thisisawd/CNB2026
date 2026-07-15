@@ -1,4 +1,4 @@
-import cnbIcon from '../assets/CNB_CLASS_2026.png';
+import cnbIcon from '../assets/CNB_ICON_V2.png';
 
 interface NotebookIconProps {
   color?: string;
