@@ -3,7 +3,7 @@ import { BookOpen } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { CNBBackgroundGradient } from './CNBBackgroundGradient';
 import BackpackIcon from '../imports/backpack-icon';
-import createNotebookIcon from '../assets/CNB_SVG_FINAL.svg';
+import createNotebookIcon from '../assets/CNB_PNG_FINAL.png';
 import createStaffNotebookIcon from '../assets/SNB_SVG_FINAL.svg';
 import studentsIcon from 'figma:asset/286689605a02652f0f3caddb7bd9d873df1bee4c.png';
 import studentsIconAlt1 from 'figma:asset/ad90c25bb85d91f5b753ee4bac48ec1183080283.png';
@@ -27,7 +27,7 @@ export const WelcomePage = memo(function WelcomePage({ onCreateNotebook, onManag
   const cards = useMemo(() => [
     {
       id: 'create',
-      icon: <ImageWithFallback src={isStaff ? createStaffNotebookIcon : createNotebookIcon} alt={isStaff ? "Create a staff notebook" : "Create Class Notebook"} className="w-12 h-12" />,
+      icon: <ImageWithFallback src={isStaff ? createStaffNotebookIcon : createNotebookIcon} alt={isStaff ? "Create a staff notebook" : "Create Class Notebook"} className={isStaff ? 'w-12 h-12' : 'w-10 h-10'} />,
       label: isStaff ? 'Create a staff notebook' : 'Create a Class Notebook',
       onClick: onCreateNotebook,
     },

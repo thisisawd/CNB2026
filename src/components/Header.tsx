@@ -6,7 +6,7 @@ import { HelpPanel } from './HelpPanel';
 import { FeatureFlagsPanel } from './FeatureFlagsPanel';
 import { ChevronDown } from 'lucide-react';
 import { useDarkMode } from './DarkModeContext';
-import classNotebookIcon from '../assets/CNB_SVG_FINAL.svg';
+import classNotebookIcon from '../assets/CNB_PNG_FINAL.png';
 import staffNotebookIcon from '../assets/SNB_SVG_FINAL.svg';
 import waffleIcon from 'figma:asset/21f8e9858d4b093e8eb8605fd894074baf7ddbba.png';
 import profileIcon from 'figma:asset/1fccae1a9f64af9240f71c3e987e8891da190b73.png';
@@ -70,7 +70,7 @@ export const Header = memo(function Header({ featureFlags = {}, onFeatureFlagCha
           onClick={onLogoClick}
           className={`flex items-center gap-2 px-2 py-1 rounded transition-colors ${themed ? 'hover:bg-white/15' : 'hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d]'}`}
         >
-          <img src={notebookType === 'class' ? classNotebookIcon : staffNotebookIcon} alt="OneNote" className="w-6 h-6" />
+          <img src={notebookType === 'class' ? classNotebookIcon : staffNotebookIcon} alt="OneNote" className="w-5 h-5 object-contain" />
           <span className={themed ? 'text-white' : 'text-[#323130] dark:text-[#ffffff]'}>{notebookType === 'class' ? 'Class Notebook' : 'Staff Notebook'}</span>
         </button>
       </div>
