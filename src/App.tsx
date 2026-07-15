@@ -87,9 +87,17 @@ export default function App() {
     fluent2_components: false,
   });
 
-  // Set document title based on notebook type
+  // Set document title and favicon based on notebook type
   useEffect(() => {
-    document.title = notebookType === 'staff' ? 'OneNote Staff Notebook' : 'OneNote Class Notebook';
+    const isStaff = notebookType === 'staff';
+    document.title = isStaff ? 'OneNote Staff Notebook' : 'OneNote Class Notebook';
+
+    const href = `${import.meta.env.BASE_URL}${isStaff ? 'favicon-staff.png' : 'favicon-class.png'}?v=4`;
+    const selectors = ['link[rel="icon"]', 'link[rel="shortcut icon"]', 'link[rel="apple-touch-icon"]'];
+    selectors.forEach((selector) => {
+      const link = document.querySelector<HTMLLinkElement>(selector);
+      if (link) link.href = href;
+    });
   }, [notebookType]);
 
   // Load notebooks from localStorage on mount
