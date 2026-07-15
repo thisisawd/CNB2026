@@ -24,8 +24,8 @@ import { Footer } from './components/Footer';
 import { SignInDialog } from './components/SignInDialog';
 import { FluentComparisonPage } from './components/FluentComparisonPage';
 import { Fluent2Provider } from './components/Fluent2Context';
-import classNotebookFavicon from './assets/CNB_SVG_FINAL.svg';
-import staffNotebookFavicon from './assets/SNB_SVG_FINAL.svg';
+import classNotebookFavicon from './assets/CNB_PNG_FINAL.png';
+import staffNotebookFavicon from './assets/SNB_PNG_FINAL.png';
 
 interface Notebook {
   id: string;
