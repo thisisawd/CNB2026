@@ -6,7 +6,7 @@ import { HelpPanel } from './HelpPanel';
 import { FeatureFlagsPanel } from './FeatureFlagsPanel';
 import { ChevronDown } from 'lucide-react';
 import { useDarkMode } from './DarkModeContext';
-import classNotebookIcon from '../assets/CNB_PNG_FINAL.png';
+import classNotebookIcon from '../assets/CNB_CLASS_2026.png';
 import staffNotebookIcon from '../assets/SNB_SVG_FINAL.svg';
 import waffleIcon from 'figma:asset/21f8e9858d4b093e8eb8605fd894074baf7ddbba.png';
 import profileIcon from 'figma:asset/1fccae1a9f64af9240f71c3e987e8891da190b73.png';
