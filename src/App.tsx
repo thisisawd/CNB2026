@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo, useEffect } from 'react';
 import { DarkModeProvider } from './components/DarkModeContext';
+import { useIconSet } from './components/IconSetContext';
 import { Header } from './components/Header';
 import { SubwayNav } from './components/SubwayNav';
 import { MarketingPage } from './components/MarketingPage';
@@ -87,18 +88,21 @@ export default function App() {
     fluent2_components: false,
   });
 
-  // Set document title and favicon based on notebook type
+  const { faviconClassBase, faviconStaffBase } = useIconSet();
+
+  // Set document title and favicon based on notebook type and selected icon set
   useEffect(() => {
     const isStaff = notebookType === 'staff';
     document.title = isStaff ? 'OneNote Staff Notebook' : 'OneNote Class Notebook';
 
-    const href = `${import.meta.env.BASE_URL}${isStaff ? 'favicon-staff.png' : 'favicon-class.png'}?v=4`;
+    const base = isStaff ? faviconStaffBase : faviconClassBase;
+    const href = `${import.meta.env.BASE_URL}${base}.png?v=5`;
     const selectors = ['link[rel="icon"]', 'link[rel="shortcut icon"]', 'link[rel="apple-touch-icon"]'];
     selectors.forEach((selector) => {
       const link = document.querySelector<HTMLLinkElement>(selector);
       if (link) link.href = href;
     });
-  }, [notebookType]);
+  }, [notebookType, faviconClassBase, faviconStaffBase]);
 
   // Load notebooks from localStorage on mount
   useEffect(() => {

@@ -1,4 +1,4 @@
-import cnbIcon from '../assets/CNB_ICON_V2.png';
+import { useIconSet } from '../components/IconSetContext';
 
 interface NotebookIconProps {
   color?: string;
@@ -6,9 +6,10 @@ interface NotebookIconProps {
 }
 
 export default function NotebookIcon({ color, className = "size-full" }: NotebookIconProps) {
+  const { classNotebookIcon } = useIconSet();
   return (
     <div className={`relative ${className}`} data-name="Notebook icon">
-      <img src={cnbIcon} alt="Notebook" className="block size-full object-contain" />
+      <img src={classNotebookIcon} alt="Notebook" className="block size-full object-contain" />
     </div>
   );
 }

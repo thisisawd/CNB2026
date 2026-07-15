@@ -6,6 +6,7 @@ import { HelpPanel } from './HelpPanel';
 import { FeatureFlagsPanel } from './FeatureFlagsPanel';
 import { ChevronDown } from 'lucide-react';
 import { useDarkMode } from './DarkModeContext';
+import { useIconSet } from './IconSetContext';
 import classNotebookIcon from '../assets/CNB_ICON_V2.png';
 import staffNotebookIcon from '../assets/SNB_ICON_V2.png';
 import waffleIcon from 'figma:asset/21f8e9858d4b093e8eb8605fd894074baf7ddbba.png';
@@ -30,6 +31,7 @@ export const Header = memo(function Header({ featureFlags = {}, onFeatureFlagCha
   const [isFeatureFlagsPanelOpen, setIsFeatureFlagsPanelOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const { theme, themeId } = useDarkMode();
+  const { classNotebookIcon: activeClassIcon, staffNotebookIcon: activeStaffIcon } = useIconSet();
   const themed = themeId !== 'default';
   const themeBackground = theme.gradient ?? theme.color;
 
@@ -70,7 +72,7 @@ export const Header = memo(function Header({ featureFlags = {}, onFeatureFlagCha
           onClick={onLogoClick}
           className={`flex items-center gap-2 px-2 py-1 rounded transition-colors ${themed ? 'hover:bg-white/15' : 'hover:bg-[#f3f2f1] dark:hover:bg-[#3d3d3d]'}`}
         >
-          <img src={notebookType === 'class' ? classNotebookIcon : staffNotebookIcon} alt="OneNote" className="w-5 h-5 object-contain" />
+          <img src={notebookType === 'class' ? activeClassIcon : activeStaffIcon} alt="OneNote" className="w-5 h-5 object-contain" />
           <span className={themed ? 'text-white' : 'text-[#323130] dark:text-[#ffffff]'}>{notebookType === 'class' ? 'Class Notebook' : 'Staff Notebook'}</span>
         </button>
       </div>

@@ -2,6 +2,7 @@ import { memo, useMemo } from 'react';
 import { BookOpen } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { CNBBackgroundGradient } from './CNBBackgroundGradient';
+import { useIconSet } from './IconSetContext';
 import BackpackIcon from '../imports/backpack-icon';
 import createNotebookIcon from '../assets/CNB_ICON_V2.png';
 import createStaffNotebookIcon from '../assets/SNB_ICON_V2.png';
@@ -23,11 +24,12 @@ interface WelcomePageProps {
 export const WelcomePage = memo(function WelcomePage({ onCreateNotebook, onManageNotebooks, onAddTeachers, onAddStudents, featureFlags = {}, notebookType = 'class' }: WelcomePageProps) {
   const useAlt1Icons = featureFlags.teacher_student_icon_alt1;
   const isStaff = notebookType === 'staff';
+  const { classNotebookIcon: activeClassIcon, staffNotebookIcon: activeStaffIcon } = useIconSet();
 
   const cards = useMemo(() => [
     {
       id: 'create',
-      icon: <ImageWithFallback src={isStaff ? createStaffNotebookIcon : createNotebookIcon} alt={isStaff ? "Create a staff notebook" : "Create Class Notebook"} className={isStaff ? 'w-12 h-12' : 'w-10 h-10'} />,
+      icon: <ImageWithFallback src={isStaff ? activeStaffIcon : activeClassIcon} alt={isStaff ? "Create a staff notebook" : "Create Class Notebook"} className={isStaff ? 'w-12 h-12' : 'w-10 h-10'} />,
       label: isStaff ? 'Create a staff notebook' : 'Create a Class Notebook',
       onClick: onCreateNotebook,
     },
