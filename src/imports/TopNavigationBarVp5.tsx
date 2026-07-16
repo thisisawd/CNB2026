@@ -265,15 +265,20 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
                   {iconSets.map((set) => (
                     <div
                       key={set.key}
-                      className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${selectedIconSet === set.key ? 'bg-gray-100' : ''}`}
+                      className={`w-full flex items-center px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${selectedIconSet === set.key ? 'bg-gray-100' : ''}`}
                     >
+                      <div className="w-5 shrink-0 flex items-center justify-center mr-2">
+                        {selectedIconSet === set.key && (
+                          <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
+                        )}
+                      </div>
                       <button
                         onClick={() => { setSelectedIconSet(set.key); setIsIconSetOpen(false); }}
                         className="flex-1 text-left font-['Segoe_UI',sans-serif] text-[14px] text-black"
                       >
                         {set.label}
                       </button>
-                      <div className="flex items-center gap-2 ml-2 shrink-0">
+                      <div className="flex items-center ml-2 shrink-0">
                         {LTI_PREVIEWS[set.key] && (
                           <button
                             onClick={(e) => { e.stopPropagation(); setIsIconSetOpen(false); setLtiPreviewImage(LTI_PREVIEWS[set.key]); }}
@@ -282,9 +287,6 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
                           >
                             LTI
                           </button>
-                        )}
-                        {selectedIconSet === set.key && (
-                          <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
                         )}
                       </div>
                     </div>
@@ -526,15 +528,20 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
                 {iconSets.map((set) => (
                   <div
                     key={set.key}
-                    className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${selectedIconSet === set.key ? 'bg-gray-100' : ''}`}
+                    className={`w-full flex items-center px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${selectedIconSet === set.key ? 'bg-gray-100' : ''}`}
                   >
+                    <div className="w-5 shrink-0 flex items-center justify-center mr-2">
+                      {selectedIconSet === set.key && (
+                        <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
+                      )}
+                    </div>
                     <button
                       onClick={() => { setSelectedIconSet(set.key); setIsIconSetOpen(false); }}
                       className="flex-1 text-left font-['Segoe_UI',sans-serif] text-[14px] text-black"
                     >
                       {set.label}
                     </button>
-                    <div className="flex items-center gap-2 ml-2 shrink-0">
+                    <div className="flex items-center ml-2 shrink-0">
                       {LTI_PREVIEWS[set.key] && (
                         <button
                           onClick={(e) => { e.stopPropagation(); setIsIconSetOpen(false); setLtiPreviewImage(LTI_PREVIEWS[set.key]); }}
@@ -543,9 +550,6 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
                         >
                           LTI
                         </button>
-                      )}
-                      {selectedIconSet === set.key && (
-                        <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
                       )}
                     </div>
                   </div>
