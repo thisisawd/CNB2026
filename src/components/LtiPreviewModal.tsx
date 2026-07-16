@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import ltiImage from '../assets/LTI_EDU_Light.png';
 
 interface LtiPreviewModalProps {
-  isOpen: boolean;
+  /** Src of the image to preview. When null, the modal is closed. */
+  imageSrc: string | null;
   onClose: () => void;
 }
 
-export function LtiPreviewModal({ isOpen, onClose }: LtiPreviewModalProps) {
+export function LtiPreviewModal({ imageSrc, onClose }: LtiPreviewModalProps) {
   const [showHint, setShowHint] = useState(false);
+  const isOpen = imageSrc !== null;
 
   useEffect(() => {
     if (!isOpen) return;
@@ -52,8 +53,8 @@ export function LtiPreviewModal({ isOpen, onClose }: LtiPreviewModalProps) {
         Press ESC to return
       </div>
       <img
-        src={ltiImage}
-        alt="LTI EDU Light preview"
+        src={imageSrc}
+        alt="LTI preview"
         className="max-w-[95vw] max-h-[95vh] object-contain cursor-default"
         onClick={(e) => e.stopPropagation()}
       />

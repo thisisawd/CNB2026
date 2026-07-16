@@ -3,6 +3,16 @@ import { Search as SearchIcon, Menu, X, ChevronDown, Paintbrush, Check } from 'l
 import { useState, useEffect } from 'react';
 import { useIconSet } from '../components/IconSetContext';
 import { LtiPreviewModal } from '../components/LtiPreviewModal';
+import ltiEduLightImage from '../assets/LTI_EDU_Light.png';
+import ltiOneNoteLightImage from '../assets/OneNote_Light.png';
+
+// Map from icon-set key to the LTI preview image shown when the LTI pill
+// button on that row is clicked. Rows whose key is not in this map do not
+// render an LTI button.
+const LTI_PREVIEWS: Record<string, string> = {
+  'onenote-light-modifier': ltiOneNoteLightImage,
+  'edu-light-modifier': ltiEduLightImage,
+};
 
 function Microsoft() {
   return (
@@ -87,7 +97,7 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
   const [isMobileM365Open, setIsMobileM365Open] = useState(false);
   const [isThemeOpen, setIsThemeOpen] = useState(false);
   const [isIconSetOpen, setIsIconSetOpen] = useState(false);
-  const [isLtiOpen, setIsLtiOpen] = useState(false);
+  const [ltiPreviewImage, setLtiPreviewImage] = useState<string | null>(null);
 
   // Icon set selection is shared globally via IconSetContext so that the wizard header,
   // welcome page, and favicon all update in sync when the user picks a different set.
@@ -262,11 +272,11 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
                         {set.label}
                       </button>
                       <div className="flex items-center gap-2 ml-2 shrink-0">
-                        {set.key === 'edu-light-modifier' && (
+                        {LTI_PREVIEWS[set.key] && (
                           <button
-                            onClick={(e) => { e.stopPropagation(); setIsIconSetOpen(false); setIsLtiOpen(true); }}
+                            onClick={(e) => { e.stopPropagation(); setIsIconSetOpen(false); setLtiPreviewImage(LTI_PREVIEWS[set.key]); }}
                             className="text-[11px] font-semibold px-2 py-0.5 rounded bg-[#7719AA] text-white hover:bg-[#5f0d8a] transition-colors font-['Segoe_UI',sans-serif]"
-                            aria-label="Preview LTI"
+                            aria-label={`Preview LTI for ${set.label}`}
                           >
                             LTI
                           </button>
@@ -523,11 +533,11 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
                       {set.label}
                     </button>
                     <div className="flex items-center gap-2 ml-2 shrink-0">
-                      {set.key === 'edu-light-modifier' && (
+                      {LTI_PREVIEWS[set.key] && (
                         <button
-                          onClick={(e) => { e.stopPropagation(); setIsIconSetOpen(false); setIsLtiOpen(true); }}
+                          onClick={(e) => { e.stopPropagation(); setIsIconSetOpen(false); setLtiPreviewImage(LTI_PREVIEWS[set.key]); }}
                           className="text-[11px] font-semibold px-2 py-0.5 rounded bg-[#7719AA] text-white hover:bg-[#5f0d8a] transition-colors font-['Segoe_UI',sans-serif]"
-                          aria-label="Preview LTI"
+                          aria-label={`Preview LTI for ${set.label}`}
                         >
                           LTI
                         </button>
@@ -668,7 +678,7 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
           </div>
         </>
       )}
-      <LtiPreviewModal isOpen={isLtiOpen} onClose={() => setIsLtiOpen(false)} />
+      <LtiPreviewModal imageSrc={ltiPreviewImage} onClose={() => setLtiPreviewImage(null)} />
     </div>
   );
 }
