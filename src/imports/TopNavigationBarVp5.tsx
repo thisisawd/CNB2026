@@ -261,7 +261,7 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
             {isIconSetOpen && (
               <>
                 <div className="fixed inset-0 z-40" onClick={() => setIsIconSetOpen(false)} />
-                <div className="absolute right-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md z-50 min-w-[260px]">
+                <div className="absolute right-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md z-50 min-w-[340px]">
                   {iconSets.map((set) => (
                     <div
                       key={set.key}
@@ -274,7 +274,7 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
                       </div>
                       <button
                         onClick={() => { setSelectedIconSet(set.key); setIsIconSetOpen(false); }}
-                        className="flex-1 text-left font-['Segoe_UI',sans-serif] text-[14px] text-black"
+                        className="flex-1 text-left font-['Segoe_UI',sans-serif] text-[14px] text-black whitespace-nowrap"
                       >
                         {set.label}
                       </button>
@@ -524,7 +524,7 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
           {isIconSetOpen && (
             <>
               <div className="fixed inset-0 z-40" onClick={() => setIsIconSetOpen(false)} />
-              <div className="absolute right-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md z-50 min-w-[260px]">
+              <div className="absolute right-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md z-50 min-w-[340px]">
                 {iconSets.map((set) => (
                   <div
                     key={set.key}
@@ -537,7 +537,7 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
                     </div>
                     <button
                       onClick={() => { setSelectedIconSet(set.key); setIsIconSetOpen(false); }}
-                      className="flex-1 text-left font-['Segoe_UI',sans-serif] text-[14px] text-black"
+                      className="flex-1 text-left font-['Segoe_UI',sans-serif] text-[14px] text-black whitespace-nowrap"
                     >
                       {set.label}
                     </button>
