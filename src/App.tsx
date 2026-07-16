@@ -96,11 +96,26 @@ export default function App() {
     document.title = isStaff ? 'OneNote Staff Notebook' : 'OneNote Class Notebook';
 
     const base = isStaff ? faviconStaffBase : faviconClassBase;
-    const href = `${import.meta.env.BASE_URL}${base}.png?v=5`;
-    const selectors = ['link[rel="icon"]', 'link[rel="shortcut icon"]', 'link[rel="apple-touch-icon"]'];
-    selectors.forEach((selector) => {
-      const link = document.querySelector<HTMLLinkElement>(selector);
-      if (link) link.href = href;
+    // Include the base in the cache-buster so browsers refetch when the icon
+    // set changes (some browsers cache favicons aggressively across href swaps).
+    const href = `${import.meta.env.BASE_URL}${base}.png?v=6-${base}`;
+    const specs: Array<{ rel: string; sizes?: string; type?: string }> = [
+      { rel: 'icon', type: 'image/png', sizes: '32x32' },
+      { rel: 'shortcut icon' },
+      { rel: 'apple-touch-icon' },
+    ];
+    specs.forEach(({ rel, sizes, type }) => {
+      // Remove any existing link with this rel so the browser is forced to
+      // re-fetch instead of reusing its cached favicon for the tab.
+      document
+        .querySelectorAll<HTMLLinkElement>(`link[rel="${rel}"]`)
+        .forEach((el) => el.parentNode?.removeChild(el));
+      const link = document.createElement('link');
+      link.rel = rel;
+      if (type) link.type = type;
+      if (sizes) link.setAttribute('sizes', sizes);
+      link.href = href;
+      document.head.appendChild(link);
     });
   }, [notebookType, faviconClassBase, faviconStaffBase]);
 
