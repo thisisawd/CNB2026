@@ -3,6 +3,8 @@ import classNotebookIconDark from '../assets/CNB_ICON_V2.png';
 import staffNotebookIconDark from '../assets/SNB_ICON_V2.png';
 import classNotebookIconLight from '../assets/CNB_Light.png';
 import staffNotebookIconLight from '../assets/SNB_Light.png';
+import classNotebookIconEduLight from '../assets/EDU_CNB_Light.png';
+import staffNotebookIconEduLight from '../assets/EDU_SNB_Light.png';
 
 export interface IconSetOption {
   key: string;
@@ -12,7 +14,36 @@ export interface IconSetOption {
 export const ICON_SETS: IconSetOption[] = [
   { key: 'onenote-dark-modifier', label: 'OneNote Icon - Dark Modifier' },
   { key: 'onenote-light-modifier', label: 'OneNote Icon - Light Modifier' },
+  { key: 'edu-light-modifier', label: 'EDU Icon Light Modifier' },
 ];
+
+interface IconSetVariant {
+  classIcon: string;
+  staffIcon: string;
+  faviconClassBase: string;
+  faviconStaffBase: string;
+}
+
+const ICON_VARIANTS: Record<string, IconSetVariant> = {
+  'onenote-dark-modifier': {
+    classIcon: classNotebookIconDark,
+    staffIcon: staffNotebookIconDark,
+    faviconClassBase: 'favicon-class',
+    faviconStaffBase: 'favicon-staff',
+  },
+  'onenote-light-modifier': {
+    classIcon: classNotebookIconLight,
+    staffIcon: staffNotebookIconLight,
+    faviconClassBase: 'favicon-class-light',
+    faviconStaffBase: 'favicon-staff-light',
+  },
+  'edu-light-modifier': {
+    classIcon: classNotebookIconEduLight,
+    staffIcon: staffNotebookIconEduLight,
+    faviconClassBase: 'favicon-class-edu-light',
+    faviconStaffBase: 'favicon-staff-edu-light',
+  },
+};
 
 interface IconSetContextType {
   selectedIconSet: string;
@@ -52,11 +83,12 @@ export function IconSetProvider({ children }: { children: ReactNode }) {
 
   const setSelectedIconSet = (id: string) => setSelectedIconSetState(id);
 
-  const isLightIconSet = selectedIconSet === 'onenote-light-modifier';
-  const classNotebookIcon = isLightIconSet ? classNotebookIconLight : classNotebookIconDark;
-  const staffNotebookIcon = isLightIconSet ? staffNotebookIconLight : staffNotebookIconDark;
-  const faviconClassBase = isLightIconSet ? 'favicon-class-light' : 'favicon-class';
-  const faviconStaffBase = isLightIconSet ? 'favicon-staff-light' : 'favicon-staff';
+  const variant = ICON_VARIANTS[selectedIconSet] ?? ICON_VARIANTS[DEFAULT_SET];
+  const isLightIconSet = selectedIconSet !== 'onenote-dark-modifier';
+  const classNotebookIcon = variant.classIcon;
+  const staffNotebookIcon = variant.staffIcon;
+  const faviconClassBase = variant.faviconClassBase;
+  const faviconStaffBase = variant.faviconStaffBase;
 
   return (
     <IconSetContext.Provider
