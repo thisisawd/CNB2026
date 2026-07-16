@@ -5,11 +5,13 @@ import { useIconSet } from '../components/IconSetContext';
 import { LtiPreviewModal } from '../components/LtiPreviewModal';
 import ltiEduLightImage from '../assets/LTI_EDU_Light.png';
 import ltiOneNoteLightImage from '../assets/OneNote_Light.png';
+import ltiOneNoteDarkImage from '../assets/OneNote_Dark.png';
 
 // Map from icon-set key to the LTI preview image shown when the LTI pill
 // button on that row is clicked. Rows whose key is not in this map do not
 // render an LTI button.
 const LTI_PREVIEWS: Record<string, string> = {
+  'onenote-dark-modifier': ltiOneNoteDarkImage,
   'onenote-light-modifier': ltiOneNoteLightImage,
   'edu-light-modifier': ltiEduLightImage,
 };
