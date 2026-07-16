@@ -2,6 +2,7 @@ import svgPaths from "./svg-pc5x2o8hcp";
 import { Search as SearchIcon, Menu, X, ChevronDown, Paintbrush, Check } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useIconSet } from '../components/IconSetContext';
+import { LtiPreviewModal } from '../components/LtiPreviewModal';
 
 function Microsoft() {
   return (
@@ -86,6 +87,7 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
   const [isMobileM365Open, setIsMobileM365Open] = useState(false);
   const [isThemeOpen, setIsThemeOpen] = useState(false);
   const [isIconSetOpen, setIsIconSetOpen] = useState(false);
+  const [isLtiOpen, setIsLtiOpen] = useState(false);
 
   // Icon set selection is shared globally via IconSetContext so that the wizard header,
   // welcome page, and favicon all update in sync when the user picks a different set.
@@ -247,18 +249,33 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
             {isIconSetOpen && (
               <>
                 <div className="fixed inset-0 z-40" onClick={() => setIsIconSetOpen(false)} />
-                <div className="absolute right-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md z-50 min-w-[240px]">
+                <div className="absolute right-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md z-50 min-w-[260px]">
                   {iconSets.map((set) => (
-                    <button
+                    <div
                       key={set.key}
-                      onClick={() => { setSelectedIconSet(set.key); setIsIconSetOpen(false); }}
                       className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${selectedIconSet === set.key ? 'bg-gray-100' : ''}`}
                     >
-                      <span className="font-['Segoe_UI',sans-serif] text-[14px] text-black">{set.label}</span>
-                      {selectedIconSet === set.key && (
-                        <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
-                      )}
-                    </button>
+                      <button
+                        onClick={() => { setSelectedIconSet(set.key); setIsIconSetOpen(false); }}
+                        className="flex-1 text-left font-['Segoe_UI',sans-serif] text-[14px] text-black"
+                      >
+                        {set.label}
+                      </button>
+                      <div className="flex items-center gap-2 ml-2 shrink-0">
+                        {set.key === 'edu-light-modifier' && (
+                          <button
+                            onClick={(e) => { e.stopPropagation(); setIsIconSetOpen(false); setIsLtiOpen(true); }}
+                            className="text-[11px] font-semibold px-2 py-0.5 rounded bg-[#7719AA] text-white hover:bg-[#5f0d8a] transition-colors font-['Segoe_UI',sans-serif]"
+                            aria-label="Preview LTI"
+                          >
+                            LTI
+                          </button>
+                        )}
+                        {selectedIconSet === set.key && (
+                          <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
+                        )}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </>
@@ -493,18 +510,33 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
           {isIconSetOpen && (
             <>
               <div className="fixed inset-0 z-40" onClick={() => setIsIconSetOpen(false)} />
-              <div className="absolute right-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md z-50 min-w-[240px]">
+              <div className="absolute right-0 top-full mt-2 bg-white shadow-lg border border-gray-200 rounded-md z-50 min-w-[260px]">
                 {iconSets.map((set) => (
-                  <button
+                  <div
                     key={set.key}
-                    onClick={() => { setSelectedIconSet(set.key); setIsIconSetOpen(false); }}
                     className={`w-full flex items-center justify-between px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${selectedIconSet === set.key ? 'bg-gray-100' : ''}`}
                   >
-                    <span className="font-['Segoe_UI',sans-serif] text-[14px] text-black">{set.label}</span>
-                    {selectedIconSet === set.key && (
-                      <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
-                    )}
-                  </button>
+                    <button
+                      onClick={() => { setSelectedIconSet(set.key); setIsIconSetOpen(false); }}
+                      className="flex-1 text-left font-['Segoe_UI',sans-serif] text-[14px] text-black"
+                    >
+                      {set.label}
+                    </button>
+                    <div className="flex items-center gap-2 ml-2 shrink-0">
+                      {set.key === 'edu-light-modifier' && (
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setIsIconSetOpen(false); setIsLtiOpen(true); }}
+                          className="text-[11px] font-semibold px-2 py-0.5 rounded bg-[#7719AA] text-white hover:bg-[#5f0d8a] transition-colors font-['Segoe_UI',sans-serif]"
+                          aria-label="Preview LTI"
+                        >
+                          LTI
+                        </button>
+                      )}
+                      {selectedIconSet === set.key && (
+                        <Check className="w-4 h-4 text-[#7719AA]" strokeWidth={3} />
+                      )}
+                    </div>
+                  </div>
                 ))}
               </div>
             </>
@@ -636,6 +668,7 @@ export default function TopNavigationBarVp({ onSignIn, notebookType = 'class', o
           </div>
         </>
       )}
+      <LtiPreviewModal isOpen={isLtiOpen} onClose={() => setIsLtiOpen(false)} />
     </div>
   );
 }
