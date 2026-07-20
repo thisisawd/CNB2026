@@ -5,6 +5,8 @@ import classNotebookIconLight from '../assets/CNB_Light.png';
 import staffNotebookIconLight from '../assets/SNB_Light.png';
 import classNotebookIconEduLight from '../assets/EDU_CNB_Light.png';
 import staffNotebookIconEduLight from '../assets/EDU_SNB_Light.png';
+import classNotebookIconFinal from '../assets/CNB_FINAL.png';
+import staffNotebookIconFinal from '../assets/SNB_FINAL.png';
 
 export interface IconSetOption {
   key: string;
@@ -15,6 +17,7 @@ export const ICON_SETS: IconSetOption[] = [
   { key: 'onenote-dark-modifier', label: 'OneNote Icon - Dark Modifier' },
   { key: 'onenote-light-modifier', label: 'OneNote Icon - Light Modifier' },
   { key: 'edu-light-modifier', label: 'EDU Icon Light Modifier' },
+  { key: 'final-icon', label: 'Final Icon' },
 ];
 
 interface IconSetVariant {
@@ -42,6 +45,12 @@ const ICON_VARIANTS: Record<string, IconSetVariant> = {
     staffIcon: staffNotebookIconEduLight,
     faviconClassBase: 'favicon-class-edu-light',
     faviconStaffBase: 'favicon-staff-edu-light',
+  },
+  'final-icon': {
+    classIcon: classNotebookIconFinal,
+    staffIcon: staffNotebookIconFinal,
+    faviconClassBase: 'favicon-class-final',
+    faviconStaffBase: 'favicon-staff-final',
   },
 };
 
